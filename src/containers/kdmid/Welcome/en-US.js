@@ -1,0 +1,27 @@
+
+import React from 'react';
+function welcome() {
+  return <>
+    <div className="visa-global-heading-1">E-visa characteristics of and conditions for issuing an e-visa</div>
+    <ul className="visa-global-ul-1">
+    <li><p><span>An e-visa to enter the Far Eastern Federal District can only be obtained by nationals of the following states, listed by the Government of the Russian Federation.</span></p></li>
+    <li><p><span>An e-visa to enter Kaliningrad Oblast can only be obtained by nationals of the countries listed by the Government of the Russian Federation.</span></p></li>
+    <li><p><span>An e-visa to enter Saint-Petersburg and Leningrad Oblast can only be obtained by nationals of the countries listed by the Government of the Russian Federation.</span></p></li>
+    <li><p><span>An e-visa is free. Invitations, hotel booking confirmations or any other documents that confirm the purpose of your journey to the Russian Federation are not required for an e-visa. The time period for issuing an e-visa is no longer than 4 calendar days from the date of submission of the complete application.</span></p></li>
+    <li><p><span>E-visa can be used for entering and leaving the Russian Federation at the following checkpoints at the national border of the Russian Federation in the Far Eastern Federal District, Kaliningrad Oblast, Saint-Petersburg and Leningrad Oblast:</span></p></li>
+    <li><p><span>E-visa is a single-entry visa and issued for 30 calendar days from the date of its issuance. The permitted stay in the Russian Federation with an e-visa is up to 8 days starting from the date of entry, within its validity period. E-visa validity and/or the permitted stay under it cannot be extended.</span></p></li>
+    <br/>
+    <strong>ATTENTION!</strong> The allowed period of stay in the Russian Federation of up to 8 days under an e-visa does not imply that one can stay for the entire 192 hours (24 hours multiplied by 8). The period of stay in the Russian Federation always starts at midnight of the day of passage through passport control upon entry regardless of the actual time of passage through passport control. For example, you have an e-visa valid from July 15 to August 13 and you pass through passport control upon entry at 8:00 pm on August 1, Monday. In that case, you need to pass through passport control upon exit until 11:59 pm on August 8, Monday (rather than until 8:00 pm on August 9, Tuesday). You should also note that if you passed through passport control upon entry, for instance, on August 10 with the e-visa mentioned in the example above, you need to pass through passport control upon exit until 11:59 pm on August 13, i.e. until the e-visa expires.
+    <br/><br/>
+    <li><p><span>E-visas can be of the following categories only: ordinary business visa (purpose of journey is business), ordinary tourist visa (purpose of journey is tourism), and ordinary humanitarian visa (purposes of journey are sports, cultural, scientific and technological ties). If the purpose of your journey to the Russian Federation does not correspond to any of the above, you should apply for a traditional (non electronic) visa at a diplomatic mission or consular office of the Russian Federation.</span></p></li>
+    <li><p><span>Foreign citizens who have arrived to the Russian Federation with e-visas have the right to freedom of movement within the territory of the constituent entity of the Russian Federation which they entered, with the exception of territories, organizations and facilities, to enter which a special permission is required in accordance with federal laws of the Russian Federation. Foreign citizens should leave the territory of the Russian Federation only through checkpoints of the constituent entity of the Russian Federation which they entered.</span></p></li>
+    <li><p><span>You can fill in an application form for an e-visa on this website not earlier than 20 days and no later than 4 days before the intended date of entry into the Russian Federation.</span></p></li>
+    <li><p><span>Your passport must be valid for at least 6 months from the date you applied for an e-visa. Your passport must have free space for border crossing stamps.</span></p></li>
+    <li><p><span>Foreign citizens who have arrived to the Russian Federation with e-visas are required to have a medical insurance valid in the Russian Federation's territory for the entire period of stay.</span></p></li>
+    <li><p><span>There is no need to apply for an e-visa to enter the Far Eastern Federal District, Kaliningrad Oblast, Saint-Petersburg and Leningrad Oblast if you already have a valid Russian visa in your passport. You are allowed to enter the said regions using a regular visa within its validity period with no limitations provided for by an e-visa. An e-visa does not extend the validity period of a regular visa.</span></p></li>
+    <li><p><span>Before you apply for an e-visa you are required to agree to the automatic processing, transfer and storage of data provided in your application for the purpose of the e-visa issuance.</span></p></li>
+    <li><p><span>Your application must contain full and valid data. Any incorrect information, including passport data and photo, could cause visa rejection or revocation of an already issued visa at the national border checkpoint of the Russian Federation.</span></p></li>
+    </ul>
+  </>
+}
+export default welcome;
