@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { Form, Button, Select } from 'antd';
 import * as constants from '../../../../utils/constants'
-import * as utils from '../../../../utils'
 import VisaSelect from "../../../../components/VisaSelect"
 import VisaRadio from 'components/VisaRadio'
 import resources from '../../../../utils/resources'
 import { translate } from '../../../../utils/resources'
-
-const { Option, OptGroup } = Select;
 
 class MyForm extends Component {
   static defaultProps = {
@@ -58,6 +55,7 @@ class MyForm extends Component {
         
         <VisaRadio
           label={tr(resources.step_welcome.isRepresentative)}
+          initialValue={_.get(data, 'isRepresentative')}
           field="isRepresentative"
           getFieldDecorator={getFieldDecorator}
         />
@@ -65,12 +63,13 @@ class MyForm extends Component {
         {getFieldValue('isRepresentative') === '0' && (
           <VisaRadio
             label={tr(resources.step_welcome.isApplyingOnBehalfOfMinorChild)}
+            initialValue={_.get(data, 'isApplyingOnBehalfOfMinorChild')}
             field="isApplyingOnBehalfOfMinorChild"
             getFieldDecorator={getFieldDecorator}
           />
         )}
         
-        <div className="visa-form-bottom-btn-group">
+        <div className="visa-global-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>{tr(resources.prev)}</Button>}
           {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>{tr(resources.next)}</Button>}
           <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>{tr(resources.save_and_continue_later)}</Button>

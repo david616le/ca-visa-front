@@ -39,21 +39,13 @@ const initialState = {
       taiwanIDNumberReEnter: '123456789',
       usaResidentCardNumber: '000001001',
       usaResidentCardNumberReEnter: '000001001',
-      usaResidentCardExpiryDate: {
-        YYYY: '2024',
-        MMM: '3',
-        DD: '4',
-      },
+      usaResidentCardExpiryDate: '04.03.2024',
       passportNotedNationality: '12',
     },
     personalDetails: {
       lastName: 'Surname',
       firstName: 'Given',
-      dob: {
-        YYYY: '1998',
-        MMM: '2',
-        DD: '11',
-      },
+      dob: '11.02.1998',
       countryOfBirth: '2',
       cityTownOfBirth: 'asdf',
       additionalCitizenships: ['3', '5'],
@@ -70,16 +62,8 @@ const initialState = {
       availableFunds: undefined,
       passportNumber: 'M12345678',
       passportNumberReEnter: 'M12345678',
-      issueDate: {
-        YYYY: '2016',
-        MMM: '1',
-        DD: '4',
-      },
-      expiryDate: {
-        YYYY: '2023',
-        MMM: '4',
-        DD: '6',
-      },
+      issueDate: '04.01.2016',
+      expiryDate: '06.04.2023',
     },
     employmentDetails: {
       occupation: '3',
@@ -109,11 +93,7 @@ const initialState = {
     },
     travelDetails: {
       isTravelDateKnown: '0',
-      travelDate: {
-        YYYY: '2021',
-        MMM: '4',
-        DD: '6',
-      },
+      travelDate: '06.04.2021',
       travelDateTimeHour: '10',
       travelDateTimeMinute: '20',
       travelDateTimeTimezone: '4',

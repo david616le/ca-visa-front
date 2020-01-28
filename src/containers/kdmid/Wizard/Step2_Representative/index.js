@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Radio, DatePicker, Row, Col } from 'antd';
+import { Form, Button, Checkbox, Row, Col } from 'antd';
 import * as constants from '../../../../utils/constants'
 import VisaRadio from "../../../../components/VisaRadio";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
-import VisaDatePicker from "../../../../components/VisaDatePicker";
-import * as utils from '../../../../utils'
-import VisaInputArray from "../../../../components/VisaInputArray";
 import resources from '../../../../utils/resources'
 import { translate } from '../../../../utils/resources'
-import VisaSelect from "../../../../components/VisaSelect";
 import validators from 'containers/kdmid/Validators'
-
-const { Option } = Select;
-const { TextArea } = Input;
 
 class MyForm extends Component {
   static defaultProps = {
@@ -22,8 +15,6 @@ class MyForm extends Component {
   }
   
   handleDates = (data) => {
-    if(data.birth_date)
-      data.birth_date = data.birth_date.format('DD.MM.YYYY')
     return data
   }
 
@@ -44,6 +35,7 @@ class MyForm extends Component {
     const tr = (r) => translate(r, lang);
 
     getFieldDecorator('representativeRelationship', { initialValue: _.get(data, 'representativeRelationship') })
+    getFieldDecorator('representativeCompensated', { initialValue: _.get(data, 'representativeCompensated')})
     getFieldDecorator('declareContactAndInformationIsTruthy', { initialValue: _.get(data, 'declareContactAndInformationIsTruthy') })
     
 
@@ -69,6 +61,7 @@ class MyForm extends Component {
         
         <VisaRadio
           label={tr(resources.step_representative.representativeCompensated)}
+          initialValue={_.get(data, 'representativeCompensated')}
           field="representativeCompensated"
           getFieldDecorator={getFieldDecorator}
         />
@@ -229,7 +222,7 @@ class MyForm extends Component {
           )}
         </Form.Item>
 
-        <div className="visa-form-bottom-btn-group">
+        <div className="visa-global-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>{tr(resources.prev)}</Button>}
           {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>{tr(resources.next)}</Button>}
           <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>{tr(resources.save_and_continue_later)}</Button>

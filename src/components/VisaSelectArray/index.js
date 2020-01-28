@@ -38,14 +38,16 @@ class VisaSelectArray extends Component {
 
   render() {
 
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, lang, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, lang, combines, ...rest } = this.props
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
 
     const tr = (r) => translate(r, lang);
     const languages = getFieldValue(keysField);
 
-    const formItems = languages.map((lang, index) => (
+    console.log(keysField, languages, initialValue)
+
+    const formItems = languages && languages.map((lang, index) => (
       <Form.Item
         label={index === 0 ? label : ''}
         key={index}
@@ -60,7 +62,7 @@ class VisaSelectArray extends Component {
               message: "Please input or delete this field.",
             },
           ],
-        })(<VisaSelect combines={constants.export_list(constants.past_travel_countries_options)} style={{ width: '60%', marginRight: 8 }}/>)}
+        })(<VisaSelect combines={combines} style={{ width: '60%', marginRight: 8 }}/>)}
         {languages.length > 1 ? (
           <Icon
             className="dynamic-delete-button"

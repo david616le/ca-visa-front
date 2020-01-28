@@ -49,6 +49,75 @@ const validateAlphaNumericPunctuation = (rule, value, callback, field, required 
     callback();
 };
 
+
+const validateUSAResidentCardNumber = (rule, value, callback) => {
+    if (!value) {
+        callback('This field is required');
+        return;
+    }
+
+    if(value.length !== 9 || /^[0-9]+$/.test(value)== false) {
+      callback(`The number entered is not a valid US Citizenship and Immigration Services number.`);
+      return;
+    }
+    callback();
+};
+
+const validatePassportNumber = (rule, value, callback) => {
+    if (!value) {
+        callback('This field is required');
+        return;
+    }
+
+    if(/^[0-9 A-Za-z]+$/.test(value)== false) {
+      callback(`Must be alphanumeric or contain numbers only and no special characters`);
+      return;
+    }
+    callback();
+};
+
+const validatePassportNumberReEnter = (rule, value, callback, passportNumber) => {
+    if (!value) {
+        callback('This field is required');
+        return;
+    }
+
+    if(value !== passportNumber) {
+      callback(`Passport Number values must match`);
+      return;
+    }
+    callback();
+};
+
+const validateReEnter = (rule, value, callback, original, message, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+
+    if(value !== original) {
+      callback(message);
+      return;
+    }
+    callback();
+};
+
+const validateUSAResidentCardNumberReEnter = (rule, value, callback, usaResidentCardNumber) => {
+    if (!value) {
+        callback('This field is required');
+        return;
+    }
+
+    if(value !== usaResidentCardNumber) {
+      callback(`The US Citizenship and Immigration Services Number values must match.`);
+      return;
+    }
+    callback();
+};
+
 const validateNumberSpace = (rule, value, callback, field, required = true) => {
     if (!value) {
         if(required)
@@ -60,6 +129,38 @@ const validateNumberSpace = (rule, value, callback, field, required = true) => {
 
     if(/^[0-9 ]+$/.test(value)== false) {
         callback('Must contain only numbers and spaces');
+        return;
+    }
+    callback();
+};
+
+const validateAlphaNumericSpace = (rule, value, callback, field, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+
+    if(/^[0-9A-Za-z ]+$/.test(value)== false) {
+        callback('Must only contain alphanumeric characters or a space');
+        return;
+    }
+    callback();
+};
+
+const validateAlphaNumeric = (rule, value, callback, required = true) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+
+    if(/^[0-9A-Za-z]+$/.test(value)== false) {
+        callback('Must only contain alphanumeric characters');
         return;
     }
     callback();
@@ -80,6 +181,64 @@ const validateEmail = (rule, value, callback, field, required = false) => {
     callback();
 };
 
+const validateLaterDate = (rule, value, callback, required = true, todayFine = false) => {
+    if (!value) {
+        if(required)
+            callback('This field is required');
+        else
+            callback()
+        return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
+    }
+    if (moment().diff(value) < 0 || (todayFine && moment(value, 'DD.MM.YYYY').isSame(moment()))) {
+      callback();
+      return;
+    }
+    callback("Must be later than today.");
+};
+
+const validateEarlierDate = (rule, value, callback, required = true, todayFine = false) => {
+    if (!value) {
+        if( required )
+            callback('This field is required');
+        else
+            callback()
+        return;
+    }
+    if(!isValidDate(value))
+    {
+        callback('Invalid Date')
+        return;
+    }
+    if (moment().diff(value) > 0 || (todayFine && moment(value, 'DD.MM.YYYY').isSame(moment()))) {
+      callback();
+      return;
+    }
+    callback('Must be earlier than today');
+};
+
+const validateUSZipCode = (rule, value, callback, required = true) => {
+    if (!value) {
+        if (required)
+            callback('This field is required');
+        else
+            callback();
+        return;
+    }
+    if (value[0] == ' ') {
+        callback('Leading spaces found in your entry');
+        return;
+    }
+    if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value) == false) {
+        callback('Must be in the format 99999 or 99999-9999');
+        return;
+    }
+    callback();
+};
 ////////////////////////////The above is for canada eTa////////////////////////////////////////////////////////////////////////////////
 
 const validateCyrillic = (rule, value, callback, field, required = true) => {
@@ -108,26 +267,6 @@ const validateCyrillic = (rule, value, callback, field, required = true) => {
       return;
     }
     callback();
-};
-
-const validateEarlierDate = (rule, value, callback, field, required = true, todayFine = false) => {
-    if (!value) {
-        if( required )
-            callback('This field is required');
-        else
-            callback()
-        return;
-    }
-    if(!isValidDate(value))
-    {
-        callback('Invalid Date')
-        return;
-    }
-    if (moment().diff(value) > 0 || (todayFine && moment(value, 'DD.MM.YYYY').isSame(moment()))) {
-      callback();
-      return;
-    }
-    callback(field + ' must be earlier than today');
 };
 const validateTelNumber = (rule, value, callback, field, required = true, maxLength = 20) => {
     if (!value) {
@@ -237,26 +376,6 @@ const validateExplain = (rule, value, callback, field, required = false) => {
 };
 /* --------------------- NEW KDMID ------------------------- */
 
-const validateLaterDate = (rule, value, callback, field, required = true, todayFine = false) => {
-    if (!value) {
-        if(required)
-            callback('This field is required');
-        else
-            callback()
-        return;
-    }
-    if(!isValidDate(value))
-    {
-        callback('Invalid Date')
-        return;
-    }
-    if (moment().diff(value) < 0 || (todayFine && moment(value, 'DD.MM.YYYY').isSame(moment()))) {
-      callback();
-      return;
-    }
-    callback(field + " must be later than today.");
-};
-
 const validateLeadingSpace = (rule, value, callback, field, required = true) => {
     if (!value) {
         if(required)
@@ -306,30 +425,20 @@ const validateZipCode = (rule, value, callback, field, required) => {
     }
     callback();
 };
-const validateUSZipCode = (rule, value, callback, field, required) => {
-    if (!value) {
-        if (required)
-            callback('This field is required');
-        else
-            callback();
-        return;
-    }
-    if (value[0] == ' ') {
-        callback(field + '  - leading spaces found in your entry');
-        return;
-    }
-    if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value) == false) {
-        callback(field + ' is invalid. Verify the format is correct.');
-        return;
-    }
-    callback();
-};
+
 
 const ds160_validators = {
     validateName, 
     validateAlphaNumericPunctuation,
     validateNumberSpace,
-
+    validateAlphaNumericSpace,
+    validateUSAResidentCardNumber,
+    validateUSAResidentCardNumberReEnter,
+    validatePassportNumber,
+    validatePassportNumberReEnter,
+    validateAlphaNumeric,
+    validateReEnter,
+    validateEmail,
 
     validateCyrillic,
     validateEarlierDate,
@@ -341,7 +450,6 @@ const ds160_validators = {
 
     validateLaterDate,
     validateAfterSpecificDate,
-    validateEmail,
     validateLeadingSpace,
     validateUSZipCode,
     validateZipCode,

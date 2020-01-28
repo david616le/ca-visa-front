@@ -10,6 +10,13 @@ import { withCookies } from 'react-cookie'
 import FormWelcome from './Step1_Welcome'
 import FormRepresentative from './Step2_Representative'
 import FormPrerequisite from './Step3_Prerequisite'
+import FormPassport from './Step4_Passport'
+import FormEmployment from './Step5_Employment'
+import FormContact from './Step6_Contact'
+import FormTravel from './Step7_Travel'
+
+import FormConsent from './Step9_Consent'
+import Form_Final from './Final'
 
 import moment from 'moment'
 import './index.scss'
@@ -212,6 +219,8 @@ class DS160_Wizard extends Component {
     }
 
     let form_render = ''
+    const dob = _.get(ds160, 'personalDetails.dob')
+    let age = 0
 
     let fields_list = [
       null, 
@@ -224,14 +233,24 @@ class DS160_Wizard extends Component {
       "travelDetails",
       "backgroundQuestions",
       "consentAndDeclaration",
+      "final",
     ]
 
-    if (step_index > 2) {
+    if (step_index > 1) {
       if (_.get(ds160, 'welcome.isRepresentative') !== '0')
         fields_list.splice(2, 1)
     }
 
+    if (dob) {
+      age = moment().diff(moment(dob, 'DD.MM.YYYY'), 'years', true)
+      console.log('age: ', age)
+      if (age < 18)
+        fields_list = fields_list.filter(item => item !== 'employmentDetails' && item !== 'backgroundQuestions')
+    }
+
     let field = fields_list[step_index]
+
+    console.log(field, step_index, _.get(ds160, 'welcome.isRepresentative'))
 
     let shared_params = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
@@ -239,7 +258,9 @@ class DS160_Wizard extends Component {
       handleSave: (e, form, handleDates) => this.handleSave(e, form, handleDates, field),
       agency: agency,
       lang: _.get(ds160, 'welcome.language') || 'en',
-      data: _.get(ds160, field)
+      data: _.get(ds160, field),
+      dob,
+      age,
     }
 
     switch(field) {
@@ -252,10 +273,27 @@ class DS160_Wizard extends Component {
       case 'prerequisite':
         form_render = <FormPrerequisite {...shared_params} />
         break
+      case 'personalDetails':
+        form_render = <FormPassport {...shared_params} />
+        break
+      case 'employmentDetails':
+        form_render = <FormEmployment {...shared_params} />
+        break
+      case 'contactDetails':
+        form_render = <FormContact {...shared_params} />
+        break
+      case 'travelDetails':
+        form_render = <FormTravel {...shared_params} />
+        break
+      case 'backgroundQuestions':
+        break
+      case 'consentAndDeclaration':
+        form_render = <FormConsent {...shared_params} />
+        break
       case 'final':
-        // form_render = <Form_Final {...shared_params} 
-        //     handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)} 
-        //     handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}/>
+        form_render = <Form_Final {...shared_params} 
+            handleSubmit={(e, form, handleDates) => this.handleSubmit(e, form, handleDates, field)} 
+            handleSubmitWithoutPayment={(e, form, handleDates) => this.handleSubmitWithoutPayment(e, form, handleDates, field)}/>
         break;
     }  
 
