@@ -62,7 +62,7 @@ class MyForm extends Component {
           </Col>  
         </Row>
 
-        {!['4', '10', '14'].includes(occupation) && (
+        {occupation && !['4', '10', '14'].includes(occupation) && (
           <Row>
             {occupation !== '12' && (
               <Col sm={16}>

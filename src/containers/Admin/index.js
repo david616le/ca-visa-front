@@ -14,8 +14,6 @@ import * as constants from '../../utils/constants'
 
 import './index.scss'
 
-
-
 class AdminBoard extends Component {
   static defaultProps = {
     menu: 'ds160',

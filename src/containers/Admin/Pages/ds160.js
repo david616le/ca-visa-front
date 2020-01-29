@@ -180,12 +180,12 @@ class AdminPageDS160 extends Component {
       {
         title: 'Nationality',
         key: 'citizenCode',
-        render: (text, record) => {
-          const citizenList = constants.export_list(constants.new_kdmid_citizenCode_list)
-          const citizenCodeIndex = citizenList.findIndex(item => item.value == record.citizenCode)
-          if(citizenCodeIndex >= 0)
-            return citizenList[citizenCodeIndex].label
-        }
+        // render: (text, record) => {
+        //   const citizenList = constants.export_list(constants.new_kdmid_citizenCode_list)
+        //   const citizenCodeIndex = citizenList.findIndex(item => item.value == record.citizenCode)
+        //   if(citizenCodeIndex >= 0)
+        //     return citizenList[citizenCodeIndex].label
+        // }
       },
       // {
       //   title: 'Created At',

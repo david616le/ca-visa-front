@@ -11,9 +11,6 @@ class MyForm extends Component {
     showPrev: true,
     showNext: true,
   }
-  onChangeCitizenCode = (e) => {
-    this.props.form.setFieldsValue({ "data.visitArea" : undefined })
-  }
   render() {
     const { getFieldDecorator, isFieldTouched, getFieldValue } = this.props.form;
     const formItemLayout = {
@@ -49,7 +46,7 @@ class MyForm extends Component {
             initialValue: _.get(data, 'language'),
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
-            <VisaSelect combines={constants.export_list(constants.new_kdmid_hints_and_help_language)} />
+            <VisaSelect combines={constants.export_list(constants.hints_and_help_language)} />
           )}
         </Form.Item>
         

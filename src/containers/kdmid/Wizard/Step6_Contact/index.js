@@ -69,7 +69,8 @@ class MyForm extends Component {
         <Row>
           <Col sm={12}>
             <VisaInput
-              label={tr(resources.step_contact.emailAddress)}
+              label={tr(resources.step_contact.emailAddress.label)}
+              extra={tr(resources.step_contact.emailAddress.extra)}
               field="emailAddress"
               initialValue={_.get(data, 'emailAddress')}
               getFieldDecorator={getFieldDecorator}
@@ -79,7 +80,8 @@ class MyForm extends Component {
           </Col>
           <Col sm={12}>
             <VisaInput
-              label={tr(resources.step_contact.emailAddressReEnter)}
+              label={tr(resources.step_contact.emailAddressReEnter.label)}
+              extra={tr(resources.step_contact.emailAddressReEnter.extra)}
               field="emailAddressReEnter"
               initialValue={_.get(data, 'emailAddressReEnter')}
               getFieldDecorator={getFieldDecorator}
