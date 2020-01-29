@@ -3,6 +3,7 @@ import { Form, Button, Select, Checkbox, Input, Radio, Row, Col } from 'antd';
 const { TextArea } = Input;
 import * as utils from '../../utils'
 import resources, { translate } from '../../utils/resources';
+import validators from 'containers/kdmid/Validators'
 
 class VisaExplain extends Component {
   static defaultProps = {
@@ -24,15 +25,15 @@ class VisaExplain extends Component {
             rules: [{ required: true, message: tr(resources.validations.required) }],
           })(
             <Radio.Group>
-              <Radio value={true}>Yes</Radio>
-              <Radio value={false}>No</Radio>
+              <Radio value='0'>Yes</Radio>
+              <Radio value='1'>No</Radio>
             </Radio.Group>
           )}
         </Form.Item>
-        {radioValue && <Form.Item label={textLabel} required>
+        {radioValue === '0' && <Form.Item label={textLabel} required>
           {getFieldDecorator(textField, {
             initialValue: utils.getInitialValue(textInitialValue),
-            rules: [{ validator: (rule, value, callback) => this.props.validators.validateExplain(rule, value, callback, label, true) }]
+            rules: [{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, label) }]
           })(
             <TextArea style={{textTransform: 'uppercase'}} rows={7}/>
           )}

@@ -14,7 +14,7 @@ import FormPassport from './Step4_Passport'
 import FormEmployment from './Step5_Employment'
 import FormContact from './Step6_Contact'
 import FormTravel from './Step7_Travel'
-
+import Form_Background from './Step8_Background'
 import FormConsent from './Step9_Consent'
 import Form_Final from './Final'
 
@@ -250,8 +250,6 @@ class DS160_Wizard extends Component {
 
     let field = fields_list[step_index]
 
-    console.log(field, step_index, _.get(ds160, 'welcome.isRepresentative'))
-
     let shared_params = {
       handlePrev: (e, form, handleDates) => this.handlePrev(e, form, handleDates, field),
       handleNext: (e, form, handleDates) => this.handleNext(e, form, handleDates, field),
@@ -286,6 +284,7 @@ class DS160_Wizard extends Component {
         form_render = <FormTravel {...shared_params} />
         break
       case 'backgroundQuestions':
+        form_render = <Form_Background {...shared_params} />
         break
       case 'consentAndDeclaration':
         form_render = <FormConsent {...shared_params} />

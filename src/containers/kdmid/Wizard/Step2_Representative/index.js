@@ -137,7 +137,7 @@ class MyForm extends Component {
               initialValue={_.get(data, 'mailingAddress')}
               getFieldDecorator={getFieldDecorator}
               maxLength={200}
-              customRule={[{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, tr(resources.step_representative.membershipIdNumber)) }]}
+              customRule={[{ validator: validators.validateAlphaNumericPunctuation }]}
             />
           </Col>
           <Col sm={12}>

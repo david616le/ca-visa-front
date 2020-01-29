@@ -1,11 +1,10 @@
 import React, { Component } from "react"
-import { Form, Button, Alert, Row, Col } from 'antd'
+import { Form, Button, Row, Col } from 'antd'
 import * as constants from '../../../../utils/constants'
 import VisaInput from "../../../../components/VisaInput"
 import VisaSelectItem from "../../../../components/VisaSelectItem"
 import resources from '../../../../utils/resources'
 import { translate } from '../../../../utils/resources'
-import validators from 'containers/kdmid/Validators'
 
 class MyForm extends Component {
   static defaultProps = {
@@ -33,7 +32,14 @@ class MyForm extends Component {
 
     const tr = (r) => translate(r, lang);
 
-    getFieldDecorator('passportNumber', { initialValue: _.get(data, 'passportNumber') })
+    getFieldDecorator('occupation', { initialValue: _.get(data, 'occupation') })
+
+    const occupation = getFieldValue('occupation')
+    const yearsOptions = []
+    const currentYear = parseInt(new Date().getFullYear())
+
+    for (let i = currentYear; i >= 1900; i--)
+      yearsOptions.push({ value: i, label: i })
 
     return (
       <Form {...formItemLayout}>
@@ -49,152 +55,84 @@ class MyForm extends Component {
               field="occupation"
               initialValue={_.get(data, 'occupation')}
               content={{
-                combines: constants.export_list(tr(constants.languageOfPreference))
+                combines: constants.export_list(tr(constants.occupation))
               }}
               getFieldDecorator={getFieldDecorator}
             />
-          </Col>          
+          </Col>  
         </Row>
 
-        {/* <Row>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_contact.emailAddress)}
-              field="emailAddress"
-              initialValue={_.get(data, 'emailAddress')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={100}
-              customRule={[{ validator: (rule, value, callback) => validators.validateEmail(rule, value, callback, tr(resources.step_contact.emailAddress), true) }]}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_contact.emailAddressReEnter)}
-              field="emailAddressReEnter"
-              initialValue={_.get(data, 'emailAddressReEnter')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={100}
-              customRule={[{ validator: (rule, value, callback) => validators.validateReEnter(rule, value, callback, getFieldValue('emailAddress'), 'Values must match', false) }]}
-            />
-          </Col>
-        </Row>
-
-        <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.step_residential.section_title)}</h2>
-          <div className="visa-global-section-description">{tr(resources.step_residential.section_description)}</div>
-        </div>
-
-        <Row>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_residential.aptUnit)}
-              field="aptUnit"
-              initialValue={_.get(data, 'aptUnit')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={10}
-              required={false}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_residential.streetNo)}
-              field="streetNo"
-              initialValue={_.get(data, 'streetNo')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={30}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_residential.streetAddress)}
-              field="streetAddress"
-              initialValue={_.get(data, 'streetAddress')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={100}
-              customRule={[{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, tr(resources.step_residential.streetAddress)) }]}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_residential.streetAddressAlt)}
-              field="streetAddressAlt"
-              initialValue={_.get(data, 'streetAddressAlt')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={100}
-              required={false}
-              customRule={[{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, tr(resources.step_residential.streetAddressAlt), false) }]}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaInput
-              label={tr(resources.step_residential.city)}
-              field="city"
-              initialValue={_.get(data, 'city')}
-              getFieldDecorator={getFieldDecorator}
-              maxLength={50}
-              customRule={[{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, tr(resources.step_residential.city)) }]}
-            />
-          </Col>
-          <Col sm={12}>
-            <VisaSelectItem 
-              label={tr(resources.step_residential.country)}
-              field="country"
-              initialValue={_.get(data, 'country')}
-              content={{
-                combines: constants.export_list(constants.country)
-              }}
-              getFieldDecorator={getFieldDecorator}
-            />
-          </Col>
-          {country === '223' && (
-            <>
-              <Col sm={12}>
+        {!['4', '10', '14'].includes(occupation) && (
+          <Row>
+            {occupation !== '12' && (
+              <Col sm={16}>
                 <VisaSelectItem 
-                  label={tr(resources.step_residential.state)}
-                  field="state"
-                  initialValue={_.get(data, 'state')}
+                  label={tr(resources.step_employment.title.label)}
+                  extra={tr(resources.step_employment.title.extra)}
+                  field="title"
+                  initialValue={_.get(data, 'title')}
+                  content={{
+                    combines: constants.export_list(tr(constants.jobTitle[occupation]))
+                  }}
+                  getFieldDecorator={getFieldDecorator}
+                />
+              </Col>
+            )}
+            <Col sm={16}>
+              <VisaInput
+                label={tr(resources.step_employment.companyEmployerSchoolFacilityName)}
+                field="companyEmployerSchoolFacilityName"
+                initialValue={_.get(data, 'companyEmployerSchoolFacilityName')}
+                getFieldDecorator={getFieldDecorator}
+                maxLength={75}
+              />
+            </Col>
+            <Col sm={16}>
+              <VisaSelectItem 
+                label={tr(resources.step_employment.country)}
+                field="country"
+                initialValue={_.get(data, 'country')}
+                content={{
+                  combines: constants.export_list(constants.country)
+                }}
+                getFieldDecorator={getFieldDecorator}
+              />
+            </Col>
+            {['223', '37'].includes(getFieldValue('country')) && (
+              <Col sm={16}>
+                <VisaSelectItem 
+                  label={tr(resources.step_employment.province)}
+                  field="province"
+                  initialValue={_.get(data, 'province')}
                   content={{
                     combines: constants.export_list(constants.state)
                   }}
                   getFieldDecorator={getFieldDecorator}
                 />
               </Col>
-              <Col sm={12}>
-                <VisaInput
-                  label={tr(resources.step_residential.zipCode)}
-                  field="zipCode"
-                  initialValue={_.get(data, 'zipCode')}
-                  getFieldDecorator={getFieldDecorator}
-                  maxLength={10}
-                  customRule={[{ validator: validators.validateUSZipCode }]}
-                />
-              </Col>
-            </>
-          )}
-          {country && country !== '223' && country !== '37' && (
-            <Col sm={12}>
+            )}
+            <Col sm={16}>
               <VisaInput
-                label={tr(resources.step_residential.district)}
-                field="district"
-                initialValue={_.get(data, 'district')}
+                label={tr(resources.step_employment.city)}
+                field="city"
+                initialValue={_.get(data, 'city')}
                 getFieldDecorator={getFieldDecorator}
                 maxLength={50}
-                required={false}
-                customRule={[{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, tr(resources.step_residential.district), false) }]}
               />
             </Col>
-          )}
-        </Row>
-
-        {country === '37' && (
-          <Alert
-            message="You indicate that you live in Canada. If you are a Canadian permanent resident, you cannot apply for an eTA."
-            description={
-              <div>You must present your valid PR card or permanent resident travel document (PRTD) to board your flight to Canada. Find out how to apply for, renew or replace a PR Card.</div>}
-            type="warning"
-            showIcon
-          />
-        )} */}
+            <Col sm={12}>
+              <VisaSelectItem 
+                label={tr(resources.step_employment.fromDateYear)}
+                field="fromDateYear"
+                initialValue={_.get(data, 'fromDateYear')}
+                content={{
+                  combines: yearsOptions,
+                }}
+                getFieldDecorator={getFieldDecorator}
+              />
+            </Col>
+          </Row>
+        )}
 
         <div className="visa-global-form-bottom-btn-group">
           {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>{tr(resources.prev)}</Button>}

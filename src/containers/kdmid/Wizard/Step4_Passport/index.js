@@ -74,6 +74,8 @@ class MyForm extends Component {
               customRule={[{ validator: (rule, value, callback) => validators.validatePassportNumberReEnter(rule, value, callback, passportNumber) }]}
             />
           </Col>
+        </Row>
+        <Row>
           <Col sm={12}>
             <VisaInput 
               label={tr(resources.step_passport.lastName.label)}
