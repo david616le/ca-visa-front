@@ -44,6 +44,9 @@ const MyForm = ({
               welcome: {
                 language: lang,
               },
+              before: {
+                ...values
+              }
             }
           })
       }
@@ -66,6 +69,12 @@ const MyForm = ({
   };
 
   getFieldDecorator('bPassportFranceOrVenezuela', { initialValue: undefined })
+  getFieldDecorator('bFrance', { initialValue: undefined })
+  getFieldDecorator('bVenezuelaPassportExpired', { initialValue: undefined })
+
+  const bPassportFranceOrVenezuela = getFieldValue('bPassportFranceOrVenezuela')
+  const bFrance = getFieldValue('bFrance')
+  const bVenezuelaPassportExpired = getFieldValue('bVenezuelaPassportExpired')
 
   return (
     <div className="visa-ds160">
@@ -102,74 +111,79 @@ const MyForm = ({
           />
 
           {getFieldValue('bPassportFranceOrVenezuela') === true && (
-            <VisaRadio
-              label={tr(resources.before.bFrance)}
-              field="bFrance"
-              getFieldDecorator={getFieldDecorator}
-              combines={[
-                { label: 'France', value: true },
-                { label: 'Venezuela', value: false },
-              ]}
-            />
+            <>
+              <VisaRadio
+                label={tr(resources.before.bFrance)}
+                field="bFrance"
+                getFieldDecorator={getFieldDecorator}
+                combines={[
+                  { label: 'France', value: true },
+                  { label: 'Venezuela', value: false },
+                ]}
+              />
+              {getFieldValue('bFrance') === false && (
+                <>
+                  <VisaRadio
+                    label={tr(resources.before.bHasGreenCard)}
+                    field="bHasGreenCard"
+                    getFieldDecorator={getFieldDecorator}
+                    combines={[
+                      { label: 'Yes', value: true },
+                      { label: 'No', value: false },
+                    ]}
+                  />
+                  {getFieldValue('bHasGreenCard') === false && (
+                    <Alert
+                      message="You may need a visa to travel to Canada"
+                      description={
+                        <div><a style={{ textDecoration: 'underline' }}>Find out what document you need</a> to travel to, or transit through Canada.</div>}
+                      type="warning"
+                      showIcon
+                    />
+                  )}
+                  {getFieldValue('bHasGreenCard') === true && (
+                    <>
+                      <VisaRadio
+                        label={tr(resources.before.bVenezuelaPassportExpired)}
+                        field="bVenezuelaPassportExpired"
+                        getFieldDecorator={getFieldDecorator}
+                        combines={[
+                          { label: 'Yes', value: true },
+                          { label: 'No', value: false },
+                        ]}
+                      />
+                      {getFieldValue('bVenezuelaPassportExpired') === true && (
+                        <>
+                          <VisaRadio
+                            label={tr(resources.before.bUCI.label)}
+                            extra={tr(resources.before.bUCI.extra)}
+                            field="bUCI"
+                            getFieldDecorator={getFieldDecorator}
+                            combines={[
+                              { label: 'Yes', value: true },
+                              { label: 'No', value: false },
+                            ]}
+                          />
+                          {(getFieldValue('bUCI') === true || getFieldValue('bUCI') === false) && (
+                            <Alert
+                              message="Provisional passports issued by Venezuela are not valid for travel to Canada."
+                              description="If the printed expiry date on your passport has passed, you cannot use our online form to apply for an eTA."
+                              type="warning"
+                              showIcon
+                            />
+                          )}
+                        </>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </>
           )}
 
-          {getFieldValue('bFrance') === false && (
-            <VisaRadio
-              label={tr(resources.before.bHasGreenCard)}
-              field="bHasGreenCard"
-              getFieldDecorator={getFieldDecorator}
-              combines={[
-                { label: 'Yes', value: true },
-                { label: 'No', value: false },
-              ]}
-            />
-          )}
-
-          {getFieldValue('bHasGreenCard') === false && (
-            <Alert
-              message="You may need a visa to travel to Canada"
-              description={
-                <div><a style={{ textDecoration: 'underline' }}>Find out what document you need</a> to travel to, or transit through Canada.</div>}
-              type="warning"
-              showIcon
-            />
-          )}
-
-          {getFieldValue('bHasGreenCard') === true && (
-            <VisaRadio
-              label={tr(resources.before.bVenezuelaPassportExpired)}
-              field="bVenezuelaPassportExpired"
-              getFieldDecorator={getFieldDecorator}
-              combines={[
-                { label: 'Yes', value: true },
-                { label: 'No', value: false },
-              ]}
-            />
-          )}
-
-          {getFieldValue('bVenezuelaPassportExpired') === true && (
-            <VisaRadio
-              label={tr(resources.before.bUCI.label)}
-              extra={tr(resources.before.bUCI.extra)}
-              field="bUCI"
-              getFieldDecorator={getFieldDecorator}
-              combines={[
-                { label: 'Yes', value: true },
-                { label: 'No', value: false },
-              ]}
-            />
-          )}
-
-          {(getFieldValue('bUCI') === true || getFieldValue('bUCI') === false) && (
-            <Alert
-              message="Provisional passports issued by Venezuela are not valid for travel to Canada."
-              description="If the printed expiry date on your passport has passed, you cannot use our online form to apply for an eTA."
-              type="warning"
-              showIcon
-            />
-          )}
-
-          {(getFieldValue('bPassportFranceOrVenezuela') === false || getFieldValue('bFrance') === true || getFieldValue('bVenezuelaPassportExpired') === false) && (
+          {(bPassportFranceOrVenezuela === false ||
+            (bPassportFranceOrVenezuela === true && bFrance === true) ||
+            (bPassportFranceOrVenezuela === true && bFrance === false && bVenezuelaPassportExpired === false)) && (
             <div className="visa-global-btn-group" style={{textAlign: 'center', margin: '40px 0px'}}>
               <Button type="primary" onClick={(e) => onStartApplication(e, form)}>
                 {tr(resources.before.start_button)}

@@ -217,7 +217,6 @@ function mainReducer(state = initialState, action) {
       }
     }
     case DS160.DS160_INIT_STATE: {
-      console.log(action.initValue)
       return {
         ...initialState,
         ...action.initValue,
@@ -228,6 +227,10 @@ function mainReducer(state = initialState, action) {
             ...initialState.ds160.welcome,
             ...action.initValue.ds160.welcome,
           },
+          before: {
+            ...initialState.ds160.before,
+            ...action.initValue.ds160.before,
+          }
         }
       }
     }

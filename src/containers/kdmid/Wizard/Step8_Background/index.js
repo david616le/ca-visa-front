@@ -17,8 +17,6 @@ class MyForm extends Component {
   }
   
   handleDates = (data) => {
-    if(data.travelDate)
-      data.travelDate = data.travelDate.format('DD.MM.YYYY')
     return data
   }
 
@@ -110,10 +108,10 @@ class MyForm extends Component {
           getFieldDecorator={getFieldDecorator}
         />
 
-        <Form.Item label={tr(resources.step_background.haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails)} required>
+        <Form.Item label={tr(resources.step_background.haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails)}>
           {getFieldDecorator("haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails", {
             initialValue: _.get(data, 'haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails'),
-            rules: [{ validator: validators.validateAlphaNumericPunctuation }]
+            rules: [{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, '', false) }]
           })(
             <TextArea style={{textTransform: 'uppercase'}} rows={7}/>
           )}
