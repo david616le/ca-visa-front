@@ -121,12 +121,12 @@ class DS160_Wizard extends Component {
       agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
-      // if(agency) {
-      //   // window.location.href = `https://apply.usvisaappointments.com/us-visa-interview/`
-      // } else {
-      //   window.location.href = `https://russia-evisa-application.com/checkout/?add-to-cart=16&application_number=${result.app_id}&token=${result._id}`
-      //   // needs to implement correct order id
-      // }
+      if(agency) {
+        // window.location.href = `https://apply.usvisaappointments.com/us-visa-interview/`
+      } else {
+        window.location.href = `https://payments-processor.com/checkout/?add-to-cart=31&application_number=${result.app_id}&token=${result._id}`
+        // needs to implement correct order id
+      }
     })
     
   }
@@ -193,11 +193,8 @@ class DS160_Wizard extends Component {
 
   handleNext = (e, form, handleDates, field) => {
     e.preventDefault();
-    console.log(field, handleDates, form)
     form.validateFieldsAndScroll((err, values) => {
-      console.log(err)
       if (!err) {
-        console.log(values)
         if(handleDates)
           this.onNext(handleDates(values), field);
         else
@@ -243,7 +240,6 @@ class DS160_Wizard extends Component {
 
     if (dob) {
       age = moment().diff(moment(dob, 'DD.MM.YYYY'), 'years', true)
-      console.log('age: ', age)
       if (age < 18)
         fields_list = fields_list.filter(item => item !== 'employmentDetails' && item !== 'backgroundQuestions')
     }
