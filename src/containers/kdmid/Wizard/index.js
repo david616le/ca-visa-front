@@ -121,12 +121,12 @@ class DS160_Wizard extends Component {
       agency: agency
     }
     this.props.onSaveAndContinueLater(DS160.DS160_SAVE_REQUEST, payload, this.props.applicationId, (result) => {
-      if(agency) {
-        // window.location.href = `https://apply.usvisaappointments.com/us-visa-interview/`
-      } else {
-        window.location.href = `https://russia-evisa-application.com/checkout/?add-to-cart=16&application_number=${result.app_id}&token=${result._id}`
-        // needs to implement correct order id
-      }
+      // if(agency) {
+      //   // window.location.href = `https://apply.usvisaappointments.com/us-visa-interview/`
+      // } else {
+      //   window.location.href = `https://russia-evisa-application.com/checkout/?add-to-cart=16&application_number=${result.app_id}&token=${result._id}`
+      //   // needs to implement correct order id
+      // }
     })
     
   }

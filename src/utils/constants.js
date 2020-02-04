@@ -2,8 +2,8 @@ import React from "react";
 
 // export const myURL = 'http://localhost:3000'
 // export const apiURL = 'http://localhost:4040/api/'
-export const myURL = 'http://3.20.59.254/'
-export const apiURL = 'http://3.20.59.254/v1/api/'
+export const myURL = 'https://eta-evisa-canada.com'
+export const apiURL = 'https://eta-evisa-canada.com/v1/api/'
 
 export const export_list = (array) => {
     return array.map(option => {
