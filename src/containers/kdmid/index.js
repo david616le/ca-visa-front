@@ -100,6 +100,14 @@ const MyForm = ({
             </Select>
           </Form.Item>
 
+          <p style={{ marginBottom: '24px' }}>
+            {tr(resources.before.disclaimer_1)}
+            <br/>
+            {tr(resources.before.disclaimer_2)}
+            <br/>
+            {tr(resources.before.disclaimer_3)}
+          </p>
+
           <VisaRadio
             label={tr(resources.before.bPassportFranceOrVenezuela)}
             field="bPassportFranceOrVenezuela"

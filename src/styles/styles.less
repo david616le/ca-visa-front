@@ -1,4 +1,6 @@
 
+@import "./variables.less";
+
 body {
     font-size: 10px;
     font-family: normal normal normal 12px/1.3em Tahoma,tahoma-w01-regular,tahoma-w02-regular,tahoma-w10-regular,tahoma-w15--regular,tahoma-w99-regular,sans-serif;
@@ -92,6 +94,19 @@ body {
 }
 .ant-alert {
     margin-bottom: 24px;
+}
+
+.visa-ds160 {
+    &__content {
+        margin-top: 30px;
+        margin-bottom: 100px;
+    }
+    .visa-com-banner {
+        background-color: @primary-color !important;
+    }
+    .visa-global-heading-1 {
+        color: @primary-color !important;
+    }
 }
 @media print {
 }
