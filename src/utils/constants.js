@@ -26,7 +26,7 @@ export const export_opt_list = (array) => {
 export const USER_ROLE = {
     NOT: -1,
     ADMIN: 0,
-    AGENCY: 1,    
+    AGENCY: 1,
 }
 
 /* Dropdown Translation Start */
@@ -176,7 +176,7 @@ export const maritalStatus = {
          <option value = "2"> Divorcé </option>,
          <option value = "3"> Mariage annulé </option>,
          <option value = "4"> Veuf </option>,
-         <option value = "5"> Common Law </option>,
+         <option value = "5"> Mariage de Fait </option>,
          <option value = "6"> Jamais marié / célibataire </option>,
     ],
     es: [
@@ -185,7 +185,7 @@ export const maritalStatus = {
          <option value = "2"> Divorciado </option>,
          <option value = "3"> Matrimonio anulado </option>,
          <option value = "4"> Viudo </option>,
-         <option value = "5"> Common-Law </option>,
+         <option value = "5"> Unión de hecho </option>,
          <option value = "6"> Nunca casado / Soltero </option>,
     ],
     de: [
@@ -194,7 +194,7 @@ export const maritalStatus = {
          <option value = "2"> Geschieden </option>,
          <option value = "3"> Nichtige Ehe </option>,
          <option value = "4"> verwitwet </option>,
-         <option value = "5"> Common-Law </option>,
+         <option value = "5"> Eheschließung nach Zivilrecht </option>,
          <option value = "6"> Nie verheiratet / ledig </option>,
     ],
     it: [
@@ -203,7 +203,7 @@ export const maritalStatus = {
          <option value = "2"> Divorziato </option>,
          <option value = "3"> Annulled Marriage </option>,
          <option value = "4"> Vedovo </option>,
-         <option value = "5"> Common-Law </option>,
+         <option value = "5"> matrimonio civile </option>,
          <option value = "6"> Mai sposato / single </option>,
     ],
 }
@@ -214,20 +214,20 @@ export const languageOfPreference = {
         <option value="1">French</option>
     ],
     fr: [
-        <option value = "0"> anglais </option>,
-         <option value = "1"> français </option>
+        <option value = "0"> Anglais </option>,
+         <option value = "1"> Français </option>
     ],
     es: [
-        <option value = "0"> inglés </option>,
-         <option value = "1"> francés </option>
+        <option value = "0"> Inglés </option>,
+         <option value = "1"> Francés </option>
     ],
     de: [
         <option value = "0"> Englisch </ option>,
          <option value = "1"> Französisch </ option>
     ],
     it: [
-        <option value="0">English</option>,
-        <option value="1">French</option>
+        <option value="0"> Inglese </option>,
+        <option value="1"> Francese </option>
     ],
 }
 
@@ -254,7 +254,7 @@ export const occupation = {
         <option value = "1"> Affaires, finance et administration </option>,
         <option value = "2"> Éducation, droit et services sociaux, communautaires et gouvernementaux </option>,
         <option value = "3"> Professions de la santé </option>,
-        <option value = "4"> Homemaker </option>,
+        <option value = "4"> Homme/Femme au foyer </option>,
         <option value = "5"> Cadres de gestion </option>,
         <option value = "6"> Métiers de la fabrication et des services publics </option>,
         <option value = "7"> Forces armées / armées </option>,
@@ -288,7 +288,7 @@ export const occupation = {
         <option value = "1"> Wirtschafts-, Finanz- und Verwaltungsberufe </ option>,
         <option value = "2"> Berufe in den Bereichen Bildung, Recht und Soziales, Gemeinwesen und öffentliche Verwaltung </ option>,
         <option value = "3"> Gesundheitsberufe </ option>,
-        <option value = "4"> Homemaker </ option>,
+        <option value = "4"> Hausfrau, Hausmann </ option>,
         <option value = "5"> Managementberufe </ option>,
         <option value = "6"> Fertigungs- und Versorgungsberufe </ option>,
         <option value = "7"> Militär / Streitkräfte </ option>,
@@ -305,7 +305,7 @@ export const occupation = {
         <option value = "1"> Occupazioni di affari, finanza e amministrazione </option>,
         <option value = "2"> Istruzione, diritto e professioni sociali, comunitarie e dei servizi pubblici </option>,
         <option value = "3"> Occupazioni sanitarie </option>,
-        <option value = "4"> Homemaker </option>,
+        <option value = "4"> Casalinga, Casalingo </option>,
         <option value = "5"> Occupazioni della direzione </option>,
         <option value = "6"> Occupazioni di produzione e servizi pubblici </option>,
         <option value = "7"> Forze militari / armate </option>,
@@ -317,7 +317,7 @@ export const occupation = {
         <option value = "13"> Operatori commerciali, di trasporto e di attrezzature e relative professioni </option>,
         <option value = "14"> Disoccupati </option>,
     ],
-    
+
 }
 
 export const jobTitle = {
@@ -873,7 +873,7 @@ export const jobTitle = {
             <option value = "45"> Musicien </option>,
             <option value = "46"> Opérateur d'informations de combat naval </option>,
             <option value = "47"> Naval Communicator </option>,
-            <option value = "48"> Infirmière </option>,
+            <option value = "48"> Infirmièr/e </option>,
             <option value = "49"> Officier de sélection du personnel </option>,
             <option value = "50"> Pharmacien </option>,
             <option value = "51"> Pilot </option>,
@@ -1303,7 +1303,7 @@ export const jobTitle = {
             <option value = "16"> Superviseurs de services </option>,
             <option value = "17"> Professions spécialisées des services personnels et à la clientèle </option>,
             <option value = "18"> Soutenir les professions de l'hébergement, des voyages et des services de divertissement </option>,
-            <option value = "19"> Spécialistes techniques des ventes dans le commerce de gros et les acheteurs au détail et en gros </option>,
+            <option value = "19"> Spécialistes techniques des ventes ou d'achats dans le commerce de gros ou du détail </option>,
             <option value = "20"> Personnel des services touristiques et de divertissement </option>
         ],
         es: [

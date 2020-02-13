@@ -1,8 +1,8 @@
 export const translate = (r, lang) => {
-    if(!lang) 
+    if(!lang)
         return r.en ? r.en : ''
-    const pre = lang.split('-')[0]; 
-    return r[pre] ? r[pre] : (r.en ? r.en : '') 
+    const pre = lang.split('-')[0];
+    return r[pre] ? r[pre] : (r.en ? r.en : '')
 }
 const resources = {
     before: {
@@ -22,7 +22,7 @@ const resources = {
         },
         disclaimer_2: {
             en: `All information provided by you, or on your behalf by a designated third party, must be true and correct. This application costs $79 and is not refundable except if your eTA is denied. You many be subject to administrative or criminal penalties if you knowingly and willfully make a materially false, fictitious, or fraudulent statement or representation in an electronic travel authorization application submitted by you or on your behalf.`,
-            fr: `Toutes les informations fournies par vous ou en votre nom par un tiers désigné doivent être véridiques et correctes. Cette demande coûte 79 $ et n'est pas remboursable sauf si votre AVE est refusée. Vous pourriez être passible de sanctions administratives ou pénales si vous faites sciemment et volontairement une déclaration ou une représentation matériellement fausse, fictive ou frauduleuse dans une demande d'autorisation de voyage électronique soumise par vous ou en votre nom.`,
+            fr: `Toutes les informations fournies par vous ou en votre nom par un tiers désigné doivent être véridiques et correctes. Ce service est facturé 79 $ et n'est pas remboursable sauf si votre AVE est refusée. Vous pourriez être passible de sanctions administratives ou pénales si vous faites sciemment et volontairement une déclaration ou une représentation matériellement fausse, fictive ou frauduleuse dans une demande d'autorisation de voyage électronique soumise par vous ou en votre nom.`,
             it: `Tutte le informazioni fornite da te o per tuo conto da una terza parte designata devono essere vere e corrette. Questa applicazione costa $ 79 e non è rimborsabile, tranne se il tuo eTA viene negato. Molti sono soggetti a sanzioni amministrative o penali se si fa consapevolmente e intenzionalmente una dichiarazione o una rappresentazione materialmente falsa, fittizia o fraudolenta in una domanda di autorizzazione di viaggio elettronica inviata dall'utente o per suo conto.`,
             de: `Alle von Ihnen oder in Ihrem Namen von einem bestimmten Dritten bereitgestellten Informationen müssen wahr und richtig sein. Dieser Antrag kostet 79 US-Dollar und kann nur zurückerstattet werden, wenn Ihre eTA abgelehnt wird. Sie können verwaltungs- oder strafrechtlich verfolgt werden, wenn Sie in einem von Ihnen oder in Ihrem Namen eingereichten Antrag auf elektronische Reisegenehmigung wissentlich und vorsätzlich eine sachlich falsche, fiktive oder betrügerische Erklärung oder Darstellung abgeben.`,
             es: `Toda la información proporcionada por usted, o en su nombre por un tercero designado, debe ser verdadera y correcta. Esta aplicación cuesta $ 79 y no es reembolsable, excepto si se niega su eTA. Usted puede estar sujeto a sanciones administrativas o penales si realiza una declaración o representación materialmente falsa, ficticia o fraudulenta en una solicitud de autorización electrónica de viaje presentada por usted o en su nombre.`,
@@ -43,21 +43,21 @@ const resources = {
         },
         bFrance: {
             en: `Which country issued your passport? `,
-            fr: `Le pays qui vous a délivré votre passeport? `,
+            fr: `Quel est le pays qui vous a délivré votre passeport? `,
             it: `Che paese che ha rilasciato il passaporto? `,
             de: `Welches Land ausgestellten Pass? `,
             es: `País que expidió el pasaporte? `,
         },
         bHasGreenCard: {
             en: `Are you a lawful permanent resident of the U.S. and have an alien registration card (Green Card)? `,
-            fr: `Êtes-vous un résident permanent légal des états-UNIS et avoir une inscription au registre des étrangers (carte Verte)? `,
+            fr: `Êtes-vous un résident permanent légal des Etats-Unis en possession de la Carte Verte? `,
             it: `Sei un residente permanente degli stati UNITI e hanno un alien registration card (Carta Verde)? `,
             de: `Sind Sie ein rechtmäßigen ständigen Wohnsitz in den USA und haben eine alien registration card (Green Card)? `,
             es: `¿Es usted un residente permanente legal de los estados UNIDOS y tiene una tarjeta de residencia (Green Card)? `,
         },
         bVenezuelaPassportExpired: {
             en: `Has the printed expiry date on your Venezuelan passport already passed? `,
-            fr: `A la date d'expiration imprimée sur votre passeport Vénézuélien déjà passé? `,
+            fr: `La date d'expiration imprimée sur votre passeport Vénézuélien est elle déjà passée? `,
             it: `Ha stampata la data di scadenza sul vostro Bolivar passaporto già passato? `,
             de: `Hat das gedruckte Ablaufdatum auf dem Venezolanischen Pass bereits abgelaufen ist? `,
             es: `Tiene impresa la fecha de caducidad de su pasaporte Venezolano ya ha pasado? `,
@@ -65,14 +65,14 @@ const resources = {
         bUCI: {
             label: {
                 en: `Has the printed expiry date on your Venezuelan passport already passed? `,
-                fr: `A la date d'expiration imprimée sur votre passeport Vénézuélien déjà passé? `,
+                fr: `La date d'expiration imprimée sur votre passeport Vénézuélien est elle déjà passée? `,
                 it: `Ha stampata la data di scadenza sul vostro Bolivar passaporto già passato? `,
                 de: `Hat das gedruckte Ablaufdatum auf dem Venezolanischen Pass bereits abgelaufen ist? `,
                 es: `Tiene impresa la fecha de caducidad de su pasaporte Venezolano ya ha pasado? `,
             },
             extra: {
                 en: `This is an 8 or 10-digit number. You have this number if you applied to IRCC in the past. You can find it on an approval or refusal letter from IRCC.`,
-                fr: `C'est un 8 ou 10 chiffres. Vous avez ce numéro si vous avez appliqué pour CRIC dans le passé. Vous pouvez le trouver sur l'approbation ou le refus de la lettre de l'IRCC.`,
+                fr: `C'est un nombe à 8 ou 10 chiffres. Vous avez ce numéro si vous avez appliqué pour un IRCC dans le passé. Vous pouvez le trouver sur l'approbation ou le refus de la lettre de l'IRCC.`,
                 it: `Questo è un 8 o un numero di 10 cifre. Si dispone di questo numero, se applicato all'IRCC in passato. Puoi trovare l'approvazione o la lettera di rifiuto da IRCC.`,
                 de: `Dies ist ein 8-oder 10-stellige Nummer. Sie haben diese Nummer, wenn Sie angewendet IRCC in der Vergangenheit. Sie finden es auf eine Zulassung oder die Verweigerung der Brief vom IRCC.`,
                 es: `Este es un 8 o 10 dígitos. Usted tiene este número, si se aplica a IRCC en el pasado. Usted puede encontrar en una aprobación o denegación de la carta de IRCC.`,
@@ -80,7 +80,7 @@ const resources = {
         },
         start_button: {
             en: `Start Your Application`,
-            fr: `Compléter un nouveau formulaire`,
+            fr: `Commencez votre Application`,
             es: `Rellenar nuevo cuestionario`,
             de: `Neuen Antragsformular ausfüllen`,
             it: `Compila un nuovo modulo`,
@@ -163,22 +163,22 @@ const resources = {
         },
         extra: {
             en: `Select language in which you would like the hints, regarding completion of the application form, to be displayed`,
-            fr: `Indiquez la langue des conseils sur le remplissage de votre demande de visa`,
-            es: `Indique el idioma de soplos de la lista “Hints and help language”.`,
+            fr: `Indiquez la langue préférée pour le remplissage de votre demande de visa`,
+            es: `Indique el idioma preferido para completar su solicitud de visa”.`,
             de: `Geben Sie bitte die Sprache der Ausfüllhilfen an.`,
             it: `Indicare la lingua delle spiegazioni`,
         },
     },
     submit_your_application: {
         en: `Submit your application`,
-        fr: `Soumettez votre candidature`,
+        fr: `Soumettez votre application`,
         es: `Envía tu solicitud`,
         de: `Reichen Sie Ihre Bewerbung ein`,
         it: `Invia la tua domanda`,
     },
     continue_to_appointment: {
         en: 'Continue to Your Appointment Information',
-        fr: 'Continuez vers vos informations de rendez-vous',
+        fr: 'Continuez vers les informations de rendez-vous',
         es: 'Continúe con la información de su cita',
         de: 'Fahren Sie mit Ihren Termininformationen fort',
         it: `Continua con le informazioni sull'appuntamento`,
@@ -186,21 +186,21 @@ const resources = {
     step_welcome: {
         section_title: {
             en: `DISCLAIMER: On this website you can fill out the Application for an Electronic Travel Authorization (eTA) form and print the eTA application form, required for applying for a visa to the Canada. EACH TRAVELER MUST COMPLETE HIS/HER OWN FORM IN ORDER TO GET HIS/HER APPLICATION. The estimated average time to complete this submission is 15 minutes per respondent.`,
-            fr: `AVIS DE NON-RESPONSABILITÉ: Sur ce site Web, vous pouvez remplir le formulaire de demande d'autorisation de voyage électronique (AVE) et imprimer le formulaire de demande d'AVE, requis pour demander un visa pour le Canada. CHAQUE VOYAGEUR DOIT REMPLIR SON PROPRE FORMULAIRE POUR OBTENIR SA DEMANDE. Le temps moyen estimé pour terminer cette soumission est de 15 minutes par répondant.`,
-            it: `DISCLAIMER: Su questo sito Web è possibile compilare il modulo di domanda di autorizzazione di viaggio elettronica (eTA) e stampare il modulo di domanda eTA, necessario per richiedere un visto per il Canada. OGNI VIAGGIATORE DEVE COMPLETARE IL SUO / IL SUO PROPRIO MODULO PER OTTENERE IL SUO / LA SUA DOMANDA. Il tempo medio stimato per completare questa presentazione è di 15 minuti per rispondente.`,
+            fr: `AVERTISSEMENT: Sur ce site Web, vous pouvez remplir le formulaire de demande d'autorisation de voyage électronique (AVE/ETA) et imprimer le formulaire de demande d'AVE/ETA, requis pour demander un visa pour le Canada. CHAQUE VOYAGEUR DOIT REMPLIR SON PROPRE FORMULAIRE POUR OBTENIR SA DEMANDE. Le temps moyen estimé pour terminer cette soumission est de 15 minutes par répondant.`,
+            it: `DESCARGO DE RESPONSABILIDAD: Su questo sito Web è possibile compilare il modulo di domanda di autorizzazione di viaggio elettronica (eTA) e stampare il modulo di domanda eTA, necessario per richiedere un visto per il Canada. OGNI VIAGGIATORE DEVE COMPLETARE IL SUO / IL SUO PROPRIO MODULO PER OTTENERE IL SUO / LA SUA DOMANDA. Il tempo medio stimato per completare questa presentazione è di 15 minuti per rispondente.`,
             de: `HAFTUNGSAUSSCHLUSS: Auf dieser Website können Sie das Formular zur Beantragung einer elektronischen Reisegenehmigung (eTA) ausfüllen und das für die Beantragung eines Visums für Kanada erforderliche eTA-Antragsformular ausdrucken. JEDER REISENDER MUSS SEIN EIGENES FORMULAR AUSFÜLLEN, UM SEINEN ANTRAG ZU ERHALTEN. Die geschätzte durchschnittliche Zeit, um diese Einreichung abzuschließen, beträgt 15 Minuten pro Befragter.`,
             es: `DESCARGO DE RESPONSABILIDAD: en este sitio web puede completar la Solicitud de un formulario de Autorización Electrónica de Viaje (eTA) e imprimir el formulario de solicitud de eTA, requerido para solicitar una visa para Canadá. CADA VIAJERO DEBE COMPLETAR SU PROPIO FORMULARIO PARA OBTENER SU SOLICITUD. El tiempo promedio estimado para completar este envío es de 15 minutos por encuestado.`
         },
         isRepresentative: {
             en: `Are you applying on behalf of someone?`,
-            fr: `Êtes-vous une demande de la part de quelqu'un?`,
+            fr: `Faites vous une demande pour une autre personne?`,
             es: `Está usted solicitando en nombre de alguien?`,
             de: `Bewerben Sie sich im Auftrag von jemand?`,
             it: `Si candida per conto di qualcuno?`,
         },
         isApplyingOnBehalfOfMinorChild: {
             en: `Are you applying on behalf of a minor child?`,
-            fr: `Êtes-vous une demande au nom d'un enfant mineur?`,
+            fr: `Faites vous une demande au nom d'un enfant mineur?`,
             es: `Está usted solicitando en nombre de un menor de edad?`,
             de: `Bewerben Sie sich im Namen eines minderjährigen Kindes?`,
             it: `Si candida per conto di un minore?`,
@@ -209,7 +209,7 @@ const resources = {
     step_representative: {
         section_title: {
             en: `Parent/guardian or representative details`,
-            fr: `Parent/tuteur ou le représentant de détails`,
+            fr: `Informations personnelles du parent/tuteur ou représentant`,
             es: `Padre/madre / tutor o representante detalles`,
             de: `Elternteil/Vormund oder Vertreter details`,
             it: `Genitore/tutore o rappresentante dettagli`,
@@ -223,7 +223,7 @@ const resources = {
         },
         representativeCompensated: {
             en: `Are you being paid to represent the applicant and complete the form on their behalf?`,
-            fr: `Êtes-vous payé pour représenter le demandeur et de remplir le formulaire sur leur nom?`,
+            fr: `Êtes-vous rémunéré pour représenter le demandeur et de remplir le formulaire en son nom?`,
             es: `Están siendo pagados para representar al solicitante y complete el formulario en su nombre?`,
             de: `Werden Sie dafür bezahlt, der den Antragsteller vertritt und füllen Sie das Formular auf Ihren Namen?`,
             it: `Sei stato pagato per rappresentare il richiedente e completare il form sul loro conto?`,
@@ -258,7 +258,7 @@ const resources = {
         },
         organizationName: {
             en: `Name of firm, organization`,
-            fr: `Nom de l'entreprise, de l'organisation`,
+            fr: `Nom de l'entreprise ou de l'organisation`,
             es: `Nombre de la empresa, organización`,
             de: `Name der Firma, Organisation`,
             it: `Nome di azienda, organizzazione`,
@@ -308,7 +308,7 @@ const resources = {
             },
             extra: {
                 en: `I declare that my contact and personal information above is truthful, complete and correct.`,
-                fr: `Je déclare que mes informations personnelles et de contact ci-dessus sont véridiques, complets et exacts.`,
+                fr: `Je déclare que les coordonnées et les renseignements personnels que j'ai indiqués ci-dessus sont véridiques, complets et exacts.`,
                 es: `Declaro que mi contacto personal y la información anterior es verdadera, completa y correcta.`,
                 de: `Ich erkläre, dass meine Kontakt-und persönlichen Informationen über ist wahrheitsgemäß, vollständig und richtig sind.`,
                 it: `Dichiaro che le mie informazioni personali e di contatto sopra sono veritiere, complete e corrette.`,
@@ -324,7 +324,7 @@ const resources = {
             },
             extra: {
                 en: `I understand and accept that I am the person appointed by the applicant to conduct business on the applicant or sponsor's behalf with Immigration, Refugees and Citizenship Canada and the Canada Border Services Agency.`,
-                fr: `Je comprends et j'accepte que je suis la personne désignée par le demandeur à la conduite des affaires sur le demandeur ou du commanditaire nom de l'Immigration, des Réfugiés et de la Citoyenneté du Canada et l'Agence canadienne des Services Frontaliers.`,
+                fr: `Je comprends et j'accepte que je suis la personne désignée par le demandeur pour gérer ses interactions ou celles d'un répondant avec Immigration, Réfugiés et Citoyenneté Canada et l'Agence des services frontaliers du Canada.`,
                 es: `Entiendo y acepto que soy la persona designada por el solicitante para llevar a cabo negocios en el solicitante o del patrocinador nombre con la Inmigración, los Refugiados y Ciudadanía de Canadá y de la Agencia de Servicios Fronterizos de Canadá.`,
                 de: `Ich verstehe und akzeptiere, dass ich bin die person, die ernannt durch die Klägerin die Geschäfte über den Antragsteller oder sponsor-Namen mit der Einwanderung, Flüchtlingen und Bürgerschaft Canada und der Canada Border Services Agency.`,
                 it: `Capisco e accetto che io sono la persona nominata dal richiedente ad effettuare il richiedente o di sponsor conto, Immigrazione, Rifugiati e Cittadinanza Canada e il Canada Border Services Agency.`,
@@ -349,14 +349,14 @@ const resources = {
         countryOfCitizenship: {
             label: {
                 en: `Select the code that matches the one on your passport.`,
-                fr: `Sélectionnez le code qui correspond à celle de votre passeport.`,
+                fr: `Sélectionnez le code qui correspond à celui qui se trouve sur votre passeport.`,
                 es: `Seleccione el código que coincide con el de su pasaporte.`,
                 de: `Wählen Sie den code, der übereinstimmt, die auf Ihrem Reisepass.`,
                 it: `Selezionare il codice che corrisponde a quello sul passaporto.`,
             },
             extra: {
                 en: `Find this code on your passport information page - see the field named "Code", "Issuing country", "Authority" or "Country code".`,
-                fr: `Trouver ce code sur votre passeport page d'information - voir le champ nommé "Code", "pays d'Émission", "Autorité" ou "code Pays".`,
+                fr: `Vous trouverez ce code sur la page de renseignements de votre passeport - voir le champ  « Code » , « Pays de délivrance » , « Autorité » ou  « Code de pays ».`,
                 es: `Encontrar este código en tu pasaporte de la página de información - ver el campo denominado "Código", "país Emisor", la "Autoridad" o "código de País".`,
                 de: `Finden diesen code in Ihrem Reisepass Informationen finden Sie unter dem Feld "Code", "Herkunftsland", "Autorität" oder "Country code".`,
                 it: `Questo codice sul tuo passaporto, informazioni pagina - vedere il campo denominato "Codice", "paese di Emissione", "Autorità" o "codice Paese".`,
@@ -364,7 +364,7 @@ const resources = {
         },
         hasIsraeliNationalPassport: {
             en: `For this trip, will you use a national Israeli passport?`,
-            fr: `Pour ce voyage, allez-vous utiliser un national passeport Israélien?`,
+            fr: `Pour ce voyage, allez-vous utiliser un passeport Israélien?`,
             es: `Para este viaje, se utiliza un nacional Israelí pasaporte?`,
             de: `Für diese Reise, werden Sie eine nationale israelischen Pass?`,
             it: `Per questo viaggio, di utilizzare nazionale di passaporto Israeliano?`,
@@ -372,14 +372,14 @@ const resources = {
         passportNotedNationality: {
             label: {
                 en: `What is the nationality noted on this passport?`,
-                fr: `Quelle est la nationalité de noter sur ce passeport?`,
+                fr: `Quelle est la nationalité indiquée sur ce passeport?`,
                 es: `¿Cuál es la nacionalidad observó en este pasaporte?`,
                 de: `Was ist die Nationalität festgestellt, über diesen Pass?`,
                 it: `Qual è la nazionalità notato in questo passaporto?`,
             },
             extra: {
                 en: `See "Nationality" on your passport information page`,
-                fr: `Voir "Nationalité" sur votre passeport page d'informations`,
+                fr: `Voir "Nationalité" sur la page de renseignements de votre passeport`,
                 es: `Consulte la "Nacionalidad" en su página de información del pasaporte`,
                 de: `Unter "Nationalität" auf Ihren Reisepass Informationen Seite`,
                 it: `Vedere "Nazionalità" sul passaporto pagina di informazioni`,
@@ -387,21 +387,21 @@ const resources = {
         },
         isPermanentResidentOfUSAndHaveProofOfPermResidence: {
             en: `Are you a lawful permanent resident of the United States with a valid U.S. Citizenship and Immigration Services (USCIS) number?`,
-            fr: `Êtes-vous un résident permanent légal des États-unis avec une pièce US Citizenship and Immigration Services (USCIS) nombre?`,
+            fr: `Êtes-vous un résident permanent légitime des États-Unis possédant un numéro de carte valide des Services de citoyenneté et d'immigration des États-Unis (USCIS)?`,
             es: `¿Es usted un residente permanente legal de los Estados unidos con una válida de los estados UNIDOS de Ciudadanía y Servicios de Inmigración (USCIS) número?`,
             de: `Sind Sie ein rechtmäßigen ständigen Wohnsitz in den Vereinigten Staaten mit einem gültigen US-Staatsbürgerschaft-und Immigration-Services (USCIS) Nummer???`,
             it: `Sei un residente permanente degli Stati Uniti, con un valido UNITI Cittadinanza e Servizi Immigrazione (USCIS) numero?`,
         },
         usaResidentCardNumber: {
             en: `United States lawful permanent resident USCIS number`,
-            fr: `États-unis résident permanent légal de l'USCIS nombre`,
+            fr: `Numéro de carte de l'USCIS à titre de résident permanent légitime des États-Unis`,
             es: `Estados unidos, residente permanente legal de USCIS número`,
             de: `Vereinigten Staaten rechtmäßigen ständigen Wohnsitz USCIS Nummer`,
             it: `Stati uniti di residente permanente, USCIS numero`,
         },
         usaResidentCardNumberReEnter: {
             en: `United States lawful permanent resident alien registration card (Green Card) number (re-enter)`,
-            fr: `États-unis résident permanent légal inscription au registre des étrangers (carte Verte) numéro (ré-entrée)`,
+            fr: `Numéro de certificat d'inscription au registre des étrangers (carte verte) pour résident permanent en règle des États-Unis (inscrire à nouveau)`,
             es: `Estados unidos de residente legal permanente, tarjeta de registro de extranjero (Tarjeta Verde) número (volver a entrar)`,
             de: `Vereinigten Staaten rechtmäßiger permanent resident alien registration card (Green Card) Zahl (re-enter)`,
             it: `Stati uniti di residente permanente, alien registration card (Carta Verde) numero (re-invio)`,
@@ -422,14 +422,14 @@ const resources = {
         },
         taiwanIDNumber: {
             en: `Taiwan personal identification number`,
-            fr: `Taiwan numéro d'identification personnel`,
+            fr: `Numéro d'identification personnel de Taiwan`,
             es: `Taiwan número de identificación personal`,
             de: `Taiwan-persönliche Identifikationsnummer`,
             it: `Taiwan numero di identificazione personale`,
         },
         taiwanIDNumberReEnter: {
             en: `Taiwan personal identification number (re-enter)`,
-            fr: `Taiwan numéro d'identification personnel (ré-entrée)`,
+            fr: `Numéro d'identification personnel (inscrire à nouveau)`,
             es: `Taiwan número de identificación personal (re-enter)`,
             de: `Taiwan persönlichen Identifikationsnummer (re-enter)`,
             it: `Taiwan numero di identificazione personale (re-invio)`,
@@ -460,7 +460,7 @@ const resources = {
             },
             extra: {
                 en: `Enter the passport number exactly as it appears on the passport information page.`,
-                fr: `Entrez le numéro du passeport, exactement comme il apparaît sur le passeport de l'information de la page.`,
+                fr: `Entrez le numéro du passeport, exactement comme il apparaît sur la page de renseignements du passeport.`,
                 es: `Introducir el número de pasaporte, exactamente como aparece en el pasaporte de la página de información.`,
                 de: `Geben Sie die Nummer des Reisepasses genau so, wie es scheint, auf die passport-Informationen Seite.`,
                 it: `Immettere il numero di passaporto, esattamente come appare sul passaporto pagina di informazioni.`,
@@ -551,7 +551,7 @@ const resources = {
         },
         issueDate: {
             en: `Date of issue of passport`,
-            fr: `Date d'émission du passeport`,
+            fr: `Date de délivrance du passeport`,
             es: `Fecha de emisión de pasaporte`,
             de: `Ausstellungsdatum des Reisepasses`,
             it: `Data di rilascio del passaporto`,
@@ -574,28 +574,28 @@ const resources = {
         },
         additionalCitizenships: {
             en: `Indicate which countries/territories you are a citizen of.`,
-            fr: `Indiquer les pays/territoires que vous êtes un citoyen de l'.`,
+            fr: `Indiquez les pays ou les territoires dont vous êtes citoyen.`,
             es: `Indican que los países/territorios que usted es un ciudadano de.`,
             de: `Angeben, welche Länder/Gebiete sind Sie Bürger.`,
             it: `Indicare quali paesi/territori si sono un cittadino di.`,
         },
         hasPreviouslyAppliedToCanada: {
             en: `Have you ever applied for or obtained a visa, an eTA or a permit to visit, live, work or study in Canada?`,
-            fr: `Avez-vous déjà demandé ou obtenu un visa, un visa ou un permis de visite, de vivre, de travailler ou d'étudier au Canada?`,
+            fr: `Avez-vous déjà demandé un visa, une AVE ou un permis pour visiter, habiter, travailler ou étudier au Canada?`,
             es: `¿Alguna vez has solicitado u obtenido una visa, un eTA o un permiso para visitar, vivir, trabajar o estudiar en Canadá?`,
             de: `Haben Sie jemals beantragt oder erhalten ein Visum, das eTA-Visum oder eine Genehmigung zu besuchen, Leben, arbeiten oder studieren in Kanada?`,
             it: `Avete mai chiesto o ottenuto un visto, un eTA o di un permesso di visitare, vivere, lavorare o studiare in Canada?`,
         },
         uci: {
             en: `Unique client identifier (UCI) / Previous Canadian visa, eTA or permit number (optional)`,
-            fr: `Unique identifiant du client (UCI) / Précédent visa Canadien, l'eTA ou de numéro de permis (en option)`,
+            fr: `Identificateur unique de client (IUC) / Numéro de permis, AVE ou de visa canadien précédent (facultatif)`,
             es: `Único identificador de cliente (UCI) Anterior / visa Canadiense, eTA o número de permiso (opcional)`,
             de: `Eindeutige client-id (UCI) / Vorherigen Kanadischen visa -, eTA-oder Zulassungsnummer (optional)`,
             it: `Unico identificatore client (UCI) / Precedente Canadese di visto, di eTA o di permesso di numero (opzionale)`,
         },
         uciReEnter: {
             en: `Unique client identifier (UCI) / Previous Canadian visa, eTA or permit number (re-enter)`,
-            fr: `Unique identifiant du client (UCI) / Précédent visa Canadien, l'eTA ou de numéro de permis de (re-entrée)`,
+            fr: `Identificateur unique de client (IUC) / Numéro de permis, AVE ou de visa canadien précédent (inscrire à nouveau)`,
             es: `Único identificador de cliente (UCI) Anterior / visa Canadiense, eTA o número de permiso (volver a entrar)`,
             de: `Eindeutige client-id (UCI) / Vorherigen Kanadischen visa -, eTA-oder Zulassungsnummer (re-enter)`,
             it: `Unico identificatore client (UCI) / Precedente Canadese di visto, di eTA o di permesso di numero (re-invio)`,
@@ -604,7 +604,7 @@ const resources = {
     step_employment: {
         section_title: {
             en: `Employment information`,
-            fr: `D'information sur l'emploi`,
+            fr: `Information sur l'emploi`,
             es: `Información de empleo`,
             de: `Beschäftigung Informationen`,
             it: `Informazioni di lavoro`,
@@ -612,7 +612,7 @@ const resources = {
         occupation: {
             label: {
                 en: `Occupation`,
-                fr: `L'Occupation`,
+                fr: `Profession`,
                 es: `Ocupación`,
                 de: `Besetzung`,
                 it: `Occupazione`,
@@ -807,7 +807,7 @@ const resources = {
     step_travel: {
         section_title: {
             en: `Travel information`,
-            fr: `Informations de voyage`,
+            fr: `IRenseignements sur le voyage`,
             es: `Información de viajes`,
             de: `Reise-Informationen`,
             it: `Informazioni di viaggio`,
