@@ -1,0 +1,699 @@
+<html lang="en" class=" wizmage-show-html wizmage-running">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <title>CITIZENANDIMM-EAPPS ENLIG - Moneris Solutions</title>
+    <script
+      type="text/javascript"
+      src="/HPPDP/hpp/components/jquery-3.2.1.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="/HPPDP/hpp/components/css_hpp.php?hppdp_id=7TP4Z81922"
+      type="text/css"
+    />
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#cvdOpenID")
+          .hover(
+            function() {
+              showCVDInfo();
+            },
+            function() {
+              closeCVDInfo();
+            }
+          )
+          .focusin(function() {
+            showCVDInfo();
+          })
+          .focusout(function() {
+            closeCVDInfo();
+          });
+      });
+
+      var transaction_timeout_msg =
+        "<li>Transaction record not found.  Please try transaction again.</li>";
+
+      function displayProcessing(display_text, target_id) {
+        processing =
+          "<div id=processingImage><img src='/HPPDP/hpp/images/processing_bars_bluegrey.gif' alt='Processing'></div>" +
+          "<div id=processingText>" +
+          display_text +
+          "</div>";
+
+        document.getElementById(target_id).innerHTML = processing;
+      }
+
+      function postRequestJSON(url, parameters, target_id, func_to_call) {
+        request = false;
+
+        if (window.XMLHttpRequest) {
+          // FIREFOX
+          request = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          // IE
+          try {
+            request = new ActiveXObject("Msxml2.XMLHTTP");
+          } catch (e) {
+            try {
+              request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+          }
+        }
+        if (!request) {
+          alert("Cannot create XMLHTTP instance");
+          return false;
+        }
+
+        request.open("POST", url, true);
+        request.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded;charset=UTF-8"
+        );
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            if (request.status == 200) {
+              var jresp = eval("(" + request.responseText + ")");
+
+              if (func_to_call) {
+                eval(
+                  func_to_call +
+                    "( target_id,jresp.response.html,jresp.response.success,jresp.response.error,jresp.response.data );"
+                );
+              } else {
+                handleStandardResponse(
+                  target_id,
+                  jresp.response.html,
+                  jresp.response.success,
+                  jresp.response.error,
+                  jresp.response.html
+                );
+              }
+            } else if (request.status >= 400) {
+              document.getElementById("error_box").style.display = "block";
+              document.getElementById("error_box").innerHTML =
+                "Error -" + request.status;
+            }
+          }
+        };
+
+        request.send(parameters);
+      }
+
+      function handleStandardResponse(target_id, html, success, error, data) {
+        if (html) {
+          document.getElementById(target_id).innerHTML = html;
+        }
+        handleResponseMessages(target_id, success, error);
+      }
+
+      function showError(error) {
+        if (error === "transaction_timeout") {
+          error = transaction_timeout_msg;
+        }
+
+        document.getElementById("error_box").innerHTML =
+          '<ul id="errorTextId">' +
+          error +
+          '</ul><input type="button" name="ok" value="OK" class=closeButton onclick=closeError() id=errorCloseButton>';
+        document.getElementById("error_box").style.display = "block";
+        document.getElementById("errorCloseButton").focus();
+      }
+
+      function closeError() {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+        document.getElementById("mainContent").focus();
+      }
+
+      function showCalculateConvFee() {
+        document.getElementById("convfee_amount_display").innerHTML =
+          " Calculating...";
+        document.getElementById("convfee_total_display").innerHTML =
+          " Calculating...";
+      }
+
+      function calculateConvFee() {
+        has_conv_fee = 0;
+        var pan = document.getElementById("pan").value;
+        var val_pan = /^(\d{10,18})?$/;
+
+        if (pan.length > 10 && val_pan.test(pan)) {
+          var post_data =
+            "hpp_id=7TP4Z81922" +
+            "&hpp_ticket=" +
+            encodeURIComponent("hpp15816189968dbkvSowCeuZtljHM") +
+            "&pan=" +
+            encodeURIComponent(document.getElementById("pan").value) +
+            "&doTransaction=get_convfee";
+
+          document.getElementById("convfee_amount_display").innerHTML =
+            " Calculating...";
+          document.getElementById("convfee_total_display").innerHTML =
+            " Calculating...";
+          document.getElementById("buttonProcessCC").disabled = true;
+          postRequestJSON(
+            "hprequest.php",
+            post_data,
+            "",
+            "handleConvFeeResponse"
+          );
+        }
+      }
+
+      function handleConvFeeResponse(target_id, html, success, error, data) {
+        has_conv_fee = 1;
+        document.getElementById("convfee_amount").value = data.fee;
+        document.getElementById("convfee_amount_display").innerHTML = data.fee;
+        document.getElementById("convfee_total").value = data.total;
+        document.getElementById("convfee_total_display").innerHTML = data.total;
+        document.getElementById("buttonProcessCC").disabled = false;
+      }
+
+      function displayPayment(div_id) {
+        document.getElementById("error_box").style.display = "none";
+
+        document.getElementById("hppFinancialCC").style.display = "none";
+        document.getElementById("hppFinancialIOP").style.display = "none";
+        document.getElementById("hppFinancialMasterpass").style.display =
+          "none";
+        document.getElementById("hppFinancialVme").style.display = "none";
+
+        document.getElementById(div_id).style.display = "block";
+      }
+
+      function setPOBox() {
+        po_value = document.getElementById("avs_is_po_box").checked;
+
+        if (po_value == true) {
+          document.getElementById("poBoxDiv").style.display = "inline";
+          document.getElementById("strAddrDiv").style.display = "none";
+        } else {
+          document.getElementById("poBoxDiv").style.display = "none";
+          document.getElementById("strAddrDiv").style.display = "inline";
+        }
+      }
+
+      //------------------ TRANSACTIONS ----------------
+
+      function callCCPurchase() {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+
+        document.getElementById("hppContent").style.display = "none";
+        document.getElementById("hppProcessing").style.display = "block";
+        displayProcessing(
+          "Processing Transaction.  Please Wait.",
+          "hppProcessing"
+        );
+
+        var avs_details = getAvsDetails();
+        var cust_info = getCustInfo();
+        var cvd_details = getCvdDetails();
+        var gift_details = getGiftCards();
+        var loyalty_details = getLoyaltyDetails();
+        var convfee_details = getConvFeeDetails();
+
+        //handle expdate
+        var exp_date = document.getElementById("exp_date").value;
+        var exp_month = exp_date.substr(0, 2);
+        var exp_year = exp_date.substr(2, 4);
+
+        var input_fields = ["pan", "cardholder", "exp_date"];
+        resetFieldErrors(input_fields);
+
+        var post_data =
+          "hpp_id=7TP4Z81922" +
+          "&hpp_ticket=hpp15816189968dbkvSowCeuZtljHM" +
+          "&pan=" +
+          encodeURIComponent(document.getElementById("pan").value) +
+          "&pan_mm=" +
+          encodeURIComponent(exp_month) +
+          "&pan_yy=" +
+          encodeURIComponent(exp_year) +
+          cvd_details +
+          "&cardholder=" +
+          document.getElementById("cardholder").value +
+          avs_details +
+          cust_info +
+          gift_details +
+          loyalty_details +
+          convfee_details +
+          "&doTransaction=cc_purchase";
+
+        postRequestJSON(
+          "hprequest.php",
+          post_data,
+          "hppContent",
+          "handlePurchaseResponse"
+        );
+      }
+
+      function handlePurchaseResponse(target_id, html, success, error, data) {
+        document.getElementById("hppContent").style.display = "block";
+        document.getElementById("hppProcessing").style.display = "none";
+
+        if (error) {
+          showError(error);
+
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              document.getElementById(key + "_label").style.color = "#C9000B";
+
+              if (data[key]["error"] === "transaction_timeout") {
+                document.getElementById(
+                  key + "_label_msg"
+                ).innerHTML = transaction_timeout_msg;
+              } else {
+                document.getElementById(key + "_label_msg").innerHTML =
+                  data[key]["error"];
+              }
+            }
+          }
+        } else {
+          if (data.vme_confirm == "true") {
+            document.getElementById("hppContent").style.display = "none";
+            document.getElementById("hppProcessing").style.display = "none";
+            document.getElementById("vmeConfirm").style.display = "block";
+          } else if (data.doVbv == "true") {
+            document.getElementById("hppContent").innerHTML = base64_decode(
+              data.form
+            );
+            document.downloadForm.submit();
+          } else if (data.response_method == "GENERIC") {
+            document.getElementById("mainContent").innerHTML = base64_decode(
+              data.form
+            );
+          } else if (
+            data.response_method == "POST" ||
+            data.response_method == "GET" ||
+            data.response_method == "POST_XML"
+          ) {
+            document.getElementById("hppContent").style.display = "none";
+            document.getElementById("hppProcessing").style.display = "block";
+            displayProcessing("Loading Response", "hppProcessing");
+
+            document.getElementById("hppContent").innerHTML = base64_decode(
+              data.form
+            );
+            document.responseForm.submit();
+          }
+        }
+      }
+
+      function callVmeProcess(callid, event_type) {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+
+        document.getElementById("hppContent").style.display = "none";
+        document.getElementById("hppProcessing").style.display = "block";
+        displayProcessing(
+          "Processing Transaction.  Please Wait.",
+          "hppProcessing"
+        );
+
+        var cust_info = getCustInfo();
+        var gift_details = getGiftCards();
+        var loyalty_details = getLoyaltyDetails();
+
+        var post_data =
+          "hpp_id=7TP4Z81922" +
+          "&hpp_ticket=hpp15816189968dbkvSowCeuZtljHM" +
+          "&vme_callid=" +
+          callid +
+          "&vme_event_type=" +
+          event_type +
+          gift_details +
+          cust_info +
+          loyalty_details +
+          "&doTransaction=vme_dopurchase";
+
+        postRequestJSON(
+          "hprequest.php",
+          post_data,
+          "hppContent",
+          "handlePurchaseResponse"
+        );
+      }
+
+      function callIopInit() {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+
+        document.getElementById("hppContent").style.display = "none";
+        document.getElementById("hppProcessing").style.display = "block";
+        displayProcessing("Connecting to Interac Online", "hppProcessing");
+
+        var gift_details = getGiftCards();
+        var cust_info = getCustInfo();
+        var loyalty_details = getLoyaltyDetails();
+
+        var post_data =
+          "hpp_id=7TP4Z81922" +
+          "&hpp_ticket=hpp15816189968dbkvSowCeuZtljHM" +
+          gift_details +
+          cust_info +
+          loyalty_details +
+          "&doTransaction=init_iop";
+
+        postRequestJSON(
+          "hprequest.php",
+          post_data,
+          "hppContent",
+          "handleIopInitResponse"
+        );
+      }
+
+      function handleIopInitResponse(target_id, html, success, error, data) {
+        if (error) {
+          showError(error);
+        } else {
+          document.getElementById("hppContent").innerHTML = html;
+          document.iop_submit.submit();
+        }
+      }
+
+      function callMasterpassInit() {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+
+        document.getElementById("hppContent").style.display = "none";
+        document.getElementById("hppProcessing").style.display = "block";
+        displayProcessing("Connecting to MasterPass", "hppProcessing");
+
+        var cust_info = getCustInfo();
+        var gift_details = getGiftCards();
+        var loyalty_details = getLoyaltyDetails();
+
+        var post_data =
+          "hpp_id=7TP4Z81922" +
+          "&hpp_ticket=hpp15816189968dbkvSowCeuZtljHM" +
+          gift_details +
+          cust_info +
+          loyalty_details +
+          "&doTransaction=init_masterpass";
+
+        postRequestJSON(
+          "hprequest.php",
+          post_data,
+          "hppContent",
+          "handleMasterpassInitResponse"
+        );
+      }
+
+      function handleMasterpassInitResponse(
+        target_id,
+        html,
+        success,
+        error,
+        data
+      ) {
+        if (error) {
+          document.getElementById("hppContent").style.display = "block";
+          document.getElementById("hppProcessing").style.display = "none";
+
+          showError(error);
+        } else {
+          window.location = html;
+        }
+      }
+
+      function callVmeConfirm() {
+        document.getElementById("error_box").style.display = "none";
+        document.getElementById("error_box").innerHTML = "";
+
+        document.getElementById("hppContent").style.display = "none";
+        document.getElementById("vmeConfirm").style.display = "none";
+        document.getElementById("hppProcessing").style.display = "block";
+        displayProcessing(
+          "Processing Transaction.  Please Wait.",
+          "hppProcessing"
+        );
+
+        var post_data =
+          "hpp_id=7TP4Z81922" +
+          "&hpp_ticket=hpp15816189968dbkvSowCeuZtljHM" +
+          "&doTransaction=vme_dopurchase";
+
+        postRequestJSON(
+          "hprequest.php",
+          post_data,
+          "hppContent",
+          "handlePurchaseResponse"
+        );
+      }
+
+      function getGiftCards() {
+        var gift_data = "";
+        return gift_data;
+      }
+
+      function getLoyaltyDetails() {
+        var details = "";
+        return details;
+      }
+
+      function getAvsDetails() {
+        var details = "";
+        return details;
+      }
+
+      function getCustInfo() {
+        var details = "";
+        return details;
+      }
+
+      function getCvdDetails() {
+        var details = "";
+        details =
+          "&pan_cvd=" +
+          encodeURIComponent(document.getElementById("cvd_value").value);
+
+        var input_fields = ["cvd_value"];
+        resetFieldErrors(input_fields);
+        return details;
+      }
+
+      function getConvFeeDetails() {
+        var details = "";
+        return details;
+      }
+
+      function doCancel(cancel_id) {
+        cancelForm.submit();
+      }
+
+      function showCVDInfo() {
+        document.getElementById("cvd_info_box").style.display = "block";
+        //	document.getElementById("cvdTitleId").focus();
+      }
+      function closeCVDInfo() {
+        document.getElementById("cvd_info_box").style.display = "none";
+        //	document.getElementById("cvd_value").focus();
+      }
+
+      function base64_decode(data) {
+        // http://kevin.vanzonneveld.net
+
+        var b64 =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+        var o1,
+          o2,
+          o3,
+          h1,
+          h2,
+          h3,
+          h4,
+          bits,
+          i = 0,
+          ac = 0,
+          dec = "",
+          tmp_arr = [];
+
+        if (!data) {
+          return data;
+        }
+
+        data += "";
+
+        do {
+          // unpack four hexets into three octets using index points in b64
+          h1 = b64.indexOf(data.charAt(i++));
+          h2 = b64.indexOf(data.charAt(i++));
+          h3 = b64.indexOf(data.charAt(i++));
+          h4 = b64.indexOf(data.charAt(i++));
+
+          bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4;
+
+          o1 = (bits >> 16) & 0xff;
+          o2 = (bits >> 8) & 0xff;
+          o3 = bits & 0xff;
+
+          if (h3 == 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1);
+          } else if (h4 == 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2);
+          } else {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+          }
+        } while (i < data.length);
+
+        dec = tmp_arr.join("");
+
+        return dec;
+        //	return decodeURIComponent(toHex(dec));
+      }
+
+      function resetFieldErrors(fields) {
+        var arrayLength = fields.length;
+
+        if (arrayLength > 0) {
+          for (var i = 0; i < arrayLength; i++) {
+            var fieldname = fields[i];
+            document.getElementById(fields[i] + "_label").style.color =
+              "#000000";
+            document.getElementById(fields[i] + "_label_msg").innerHTML = "";
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="hppContent" style="display: block;">
+      <div id="mainContent">
+        <h2>TRANSACTION APPROVED - THANK YOU</h2>
+        <div class="textDesc">
+          Please print this page and keep it as your transaction receipt.
+        </div>
+        <h4 class="td2_bg">Payment Method</h4>
+        <p>
+          <label for="charge_total" id="charge_total_label"
+            >Transaction Total<span
+              class="label_error"
+              id="charge_total_label_msg"
+            ></span
+            >:</label
+          >&nbsp;$7.00 (CAD)
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Transaction Type<span class="label_error" id="_label_msg"></span
+            >:</label
+          >&nbsp;PURCHASE
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Date / Time<span class="label_error" id="_label_msg"></span
+            >:</label
+          >&nbsp;2020-02-13 13:38:18
+        </p>
+        <p>
+          <label for="charge_total" id="charge_total_label"
+            >Transaction Amount<span
+              class="label_error"
+              id="charge_total_label_msg"
+            ></span
+            >:</label
+          >&nbsp;$7.00 (CAD)
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Order ID<span class="label_error" id="_label_msg"></span>:</label
+          >&nbsp;O284239667
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Card Number<span class="label_error" id="_label_msg"></span
+            >:</label
+          >&nbsp;**** **** **** 2277
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Card Type<span class="label_error" id="_label_msg"></span>:</label
+          >&nbsp;VISA
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Resp Code - Message<span class="label_error" id="_label_msg"></span
+            >:</label
+          >&nbsp;027 - APPROVED * =
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Reference Number<span class="label_error" id="_label_msg"></span
+            >:</label
+          >&nbsp;663686590013286930
+        </p>
+        <p>
+          <label for="" id="_label"
+            >Auth Code<span class="label_error" id="_label_msg"></span>:</label
+          >&nbsp;023819
+        </p>
+        <div class="colclear"></div>
+        <div style="margin-left:75%">
+          <input
+            type="button"
+            value="Return"
+            onclick="location.href='http://www.cic.gc.ca/english/visit/eta-form-exit.asp'"
+          />
+        </div>
+      </div>
+      <div class="iop_text">
+        ® Trade-mark of Interac Inc. Used under licence
+      </div>
+    </div>
+    <div id="hiddenProcess"></div>
+    <form
+      action="https://onlineservices-servicesenligne.cic.gc.ca/eta/monerisCancelRequest.do"
+      name="cancelForm"
+      id="cancelForm"
+    >
+      <input type="hidden" name="order_id" id="order_id" value="O284239667" />
+      <input
+        type="hidden"
+        name="cancelTXN"
+        id="cancelTXN"
+        value="Cancel Transaction"
+      />
+    </form>
+    <div id="cvd_info_box" role="alert" aria-live="assertive">
+      <h3 class="cvdTitle" id="cvdTitleId">CVD - Card Validation Digits</h3>
+      <h4 class="cvdSubtitle">Visa, Mastercard and Gift Cards</h4>
+      <div class="cvdText">
+        The CVD appears on the back your credit card, it is the last three
+        digits printed on the signature panel. These digits should not appear
+        anywhere else on the card.
+      </div>
+      <h4 class="cvdSubtitle">American Express</h4>
+      <div class="cvdText">
+        The CVD appears on the front of your credit card. It is the printed four
+        digits that appear above and to the right of the embossed card number.
+        On OPTIMA cards the CVD appears above and to the left of the embossed
+        card number.
+      </div>
+    </div>
+
+    <div id="hppProcessing" class="processingFullScreen" style="display: none;">
+      <div id="processingImage">
+        <img
+          src="/HPPDP/hpp/images/processing_bars_bluegrey.gif"
+          alt="Processing"
+        />
+      </div>
+      <div id="processingText">Processing Transaction. Please Wait.</div>
+    </div>
+    <div id="ThirdPartyDiv"></div>
+
+    <div
+      style='display: none; height: 16px; width: 16px; position: fixed; z-index: 100000000; cursor: pointer; padding: 0px; margin: 0px; opacity: 0.5; top: 153px; left: 831.875px; background-image: url("chrome-extension://ifoggbfaoakkojipahnplnbfnhhhnmlp/eye.svg");'
+    ></div>
+  </body>
+</html>

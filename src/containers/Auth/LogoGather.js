@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import TweenOne, { TweenOneGroup } from 'rc-tween-one';
-import ticker from 'rc-tween-one/lib/ticker';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
-import InputNumber from 'antd/lib/input-number';
-import Radio from 'antd/lib/radio';
-import Icon from 'antd/lib/icon';
-import { enquireScreen } from 'enquire-js';
-import PropTypes from 'prop-types';
+import React from "react";
+import ReactDOM from "react-dom";
+import TweenOne, { TweenOneGroup } from "rc-tween-one";
+import ticker from "rc-tween-one/lib/ticker";
+import Input from "antd/lib/input";
+import Button from "antd/lib/button";
+import InputNumber from "antd/lib/input-number";
+import Radio from "antd/lib/radio";
+import Icon from "antd/lib/icon";
+import { enquireScreen } from "enquire-js";
+import PropTypes from "prop-types";
 
-import './LogoGather.scss'
+import "./LogoGather.less";
 
 const RadioGroup = Radio.Group;
 
@@ -20,15 +20,15 @@ class LogoGather extends React.Component {
     w: PropTypes.number,
     h: PropTypes.number,
     pixSize: PropTypes.number,
-    pointSizeMin: PropTypes.number,
+    pointSizeMin: PropTypes.number
   };
 
   static defaultProps = {
-    image: 'https://zos.alipayobjects.com/rmsportal/gsRUrUdxeGNDVfO.svg',
+    image: "https://zos.alipayobjects.com/rmsportal/gsRUrUdxeGNDVfO.svg",
     w: 300,
     h: 300,
     pixSize: 20,
-    pointSizeMin: 10,
+    pointSizeMin: 10
   };
 
   constructor(props) {
@@ -70,24 +70,31 @@ class LogoGather extends React.Component {
     const number = this.props.pixSize;
     for (let i = 0; i < w; i += number) {
       for (let j = 0; j < h; j += number) {
-        if (data[((i + j * w) * 4) + 3] > 150) {
+        if (data[(i + j * w) * 4 + 3] > 150) {
           this.pointArray.push({ x: i, y: j });
         }
       }
     }
     const children = [];
     this.pointArray.forEach((item, i) => {
-      const r = Math.random() * this.props.pointSizeMin + this.props.pointSizeMin;
+      const r =
+        Math.random() * this.props.pointSizeMin + this.props.pointSizeMin;
       const b = Math.random() * 0.4 + 0.1;
-      children.push((
-        <TweenOne className="point-wrapper" key={i} style={{ left: item.x, top: item.y }}>
+      children.push(
+        <TweenOne
+          className="point-wrapper"
+          key={i}
+          style={{ left: item.x, top: item.y }}
+        >
           <TweenOne
             className="point"
             style={{
               width: r,
               height: r,
               opacity: b,
-              backgroundColor: `rgb(${Math.round(Math.random() * 95 + 160)},255,255)`,
+              backgroundColor: `rgb(${Math.round(
+                Math.random() * 95 + 160
+              )},255,255)`
             }}
             animation={{
               y: (Math.random() * 2 - 1) * 10 || 5,
@@ -96,24 +103,30 @@ class LogoGather extends React.Component {
               repeat: -1,
               duration: 3000,
               yoyo: true,
-              ease: 'easeInOutQuad',
+              ease: "easeInOutQuad"
             }}
           />
         </TweenOne>
-      ));
+      );
     });
-    this.setState({
-      children,
-      boxAnim: { opacity: 0, type: 'from', duration: 800 },
-    }, () => {
-      this.interval = ticker.interval(this.updateTweenData, this.intervalTime);
-    });
+    this.setState(
+      {
+        children,
+        boxAnim: { opacity: 0, type: "from", duration: 800 }
+      },
+      () => {
+        this.interval = ticker.interval(
+          this.updateTweenData,
+          this.intervalTime
+        );
+      }
+    );
   }
 
   createPointData = () => {
     const { w, h } = this.props;
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, w, h);
     canvas.width = this.props.w;
     canvas.height = h;
@@ -124,7 +137,7 @@ class LogoGather extends React.Component {
       this.setDataToDom(data, w, h);
       this.dom.removeChild(canvas);
     };
-    img.crossOrigin = 'anonymous';
+    img.crossOrigin = "anonymous";
     img.src = this.props.image;
   };
 
@@ -138,9 +151,10 @@ class LogoGather extends React.Component {
           scale: 1,
           delay: Math.random() * 500,
           duration: 800,
-          ease: 'easeInOutQuint',
-        },
-      }));
+          ease: "easeInOutQuint"
+        }
+      })
+    );
     this.setState({ children });
   };
 
@@ -157,12 +171,13 @@ class LogoGather extends React.Component {
           opacity: Math.random() * 0.4 + 0.1,
           scale: Math.random() * 2.4 + 0.1,
           duration: Math.random() * 500 + 500,
-          ease: 'easeInOutQuint',
-        },
-      }));
+          ease: "easeInOutQuint"
+        }
+      })
+    );
 
     this.setState({
-      children,
+      children
     });
   };
 
@@ -182,7 +197,7 @@ class LogoGather extends React.Component {
           className="right-side blur"
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
-          ref={(c) => {
+          ref={c => {
             this.sideBoxComp = c;
           }}
         >
@@ -196,65 +211,74 @@ class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.defaultImage = {
-      a: 'https://zos.alipayobjects.com/rmsportal/gsRUrUdxeGNDVfO.svg',
-      b: 'https://zos.alipayobjects.com/rmsportal/TOXWfHIUGHvZIyb.svg',
-      c: 'https://zos.alipayobjects.com/rmsportal/NbWTEbiswBhrRBU.svg',
+      a: "https://zos.alipayobjects.com/rmsportal/gsRUrUdxeGNDVfO.svg",
+      b: "https://zos.alipayobjects.com/rmsportal/TOXWfHIUGHvZIyb.svg",
+      c: "https://zos.alipayobjects.com/rmsportal/NbWTEbiswBhrRBU.svg"
     };
     this.state = {
       image: this.defaultImage.a,
       pixSize: 20,
       pointSize: 10,
       isMobile: false,
-      show: false,
+      show: false
     };
   }
 
   componentDidMount() {
-    enquireScreen((isMobile) => {
+    enquireScreen(isMobile => {
       this.setState({ isMobile });
     });
   }
 
-  onChangeImage = (e) => {
+  onChangeImage = e => {
     const dom = e.target;
     this.image = dom.value;
-  }
+  };
 
-  onChangePix = (num) => {
+  onChangePix = num => {
     this.pixSize = num;
-  }
+  };
 
   onClick = () => {
     if (this.image || this.pixSize || this.pointSize) {
-      this.setState({
-        image: this.image || this.state.image,
-        pixSize: typeof this.pixSize === 'number' ? this.pixSize : this.state.pixSize,
-        pointSize: typeof this.pointSize === 'number' ? this.pointSize : this.state.pointSize,
-        update: true,
-      }, () => {
-        this.setState({
-          update: false,
-        });
-      });
+      this.setState(
+        {
+          image: this.image || this.state.image,
+          pixSize:
+            typeof this.pixSize === "number"
+              ? this.pixSize
+              : this.state.pixSize,
+          pointSize:
+            typeof this.pointSize === "number"
+              ? this.pointSize
+              : this.state.pointSize,
+          update: true
+        },
+        () => {
+          this.setState({
+            update: false
+          });
+        }
+      );
     }
-  }
+  };
 
-  onChangeRadio = (e) => {
+  onChangeRadio = e => {
     const target = e.target;
     const value = target.value;
     this.image = this.defaultImage[value];
     this.setState({
-      value,
+      value
     });
-  }
+  };
 
-  onChangePoint = (num) => {
+  onChangePoint = num => {
     this.pointSize = num;
-  }
+  };
 
   phoneClick = () => {
     this.setState({
-      show: !this.state.show,
+      show: !this.state.show
     });
   };
 
@@ -265,8 +289,8 @@ class Edit extends React.Component {
         pixSize={this.state.pixSize}
         pointSizeMin={this.state.pointSize}
       />
-    )
+    );
   }
 }
 
-export default Edit
+export default Edit;

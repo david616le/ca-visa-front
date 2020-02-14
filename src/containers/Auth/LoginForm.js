@@ -3,7 +3,7 @@ import {
   Form, Icon, Input, Button, Checkbox,
 } from 'antd'
 
-import './LoginForm.scss'
+import './LoginForm.less'
 
 class MyForm extends Component {
   handleSubmit = e => {
