@@ -5,10 +5,10 @@ import React from "react";
 export const myURL = 'https://eta-evisa-canada.com'
 export const apiURL = 'https://eta-evisa-canada.com/v1/api/'
 
-export const export_list = (array) => {
+export const export_list = (array, bChildren = false) => {
     return array.map(option => {
         return {
-            value: option.props.value,
+            value: bChildren ? option.props.children : option.props.value,
             label: option.props.children
         }
     })
