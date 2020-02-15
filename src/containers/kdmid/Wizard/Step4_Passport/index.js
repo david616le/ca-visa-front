@@ -9,6 +9,7 @@ import resources from "../../../../utils/resources";
 import { translate } from "../../../../utils/resources";
 import VisaSelectArray from "../../../../components/VisaSelectArray";
 import validators from "containers/kdmid/Validators";
+import moment from "moment";
 
 class MyForm extends Component {
   static defaultProps = {
@@ -35,7 +36,7 @@ class MyForm extends Component {
       }
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, lang, age } = this.props;
+    const { showPrev, showNext, onPrev, onNext, data, lang, age, isApplyingOnBehalfOfMinorChild } = this.props;
 
     const tr = r => translate(r, lang);
 
@@ -48,6 +49,8 @@ class MyForm extends Component {
 
     const passportNumber = getFieldValue("passportNumber");
     const hasPreviouslyAppliedToCanada = getFieldValue("hasPreviouslyAppliedToCanada");
+
+    console.log(moment(new Date(), "DD.MM.YYYY").add(18, "years"));
 
     return (
       <Form {...formItemLayout}>
@@ -107,7 +110,19 @@ class MyForm extends Component {
             />
           </Col>
           <Col sm={12}>
-            <VisaDatePicker label={tr(resources.step_passport.dob)} field="dob" initialValue={_.get(data, "dob")} getFieldDecorator={getFieldDecorator} customRule={[{ validator: validators.validateEarlierDate }]} setFieldsValue={setFieldsValue} getFieldValue={getFieldValue} />
+            <VisaDatePicker
+              label={tr(resources.step_passport.dob)}
+              field="dob"
+              initialValue={_.get(data, "dob")}
+              getFieldDecorator={getFieldDecorator}
+              customRule={[
+                {
+                  validator: isApplyingOnBehalfOfMinorChild === "0" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-18, "years"), true) : validators.validateEarlierDate
+                }
+              ]}
+              setFieldsValue={setFieldsValue}
+              getFieldValue={getFieldValue}
+            />
           </Col>
         </Row>
 
