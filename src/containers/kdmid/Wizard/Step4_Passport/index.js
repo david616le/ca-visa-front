@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "antd";
 import * as constants from "../../../../utils/constants";
-import VisaRadio from "../../../../components/VisaRadio";
+import VisaRadio from "components/VisaRadio";
 import VisaInput from "../../../../components/VisaInput";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
@@ -206,7 +206,7 @@ class MyForm extends Component {
           </Row>
         )}
 
-        <VisaRadio label={tr(resources.step_personal.hasPreviouslyAppliedToCanada)} initialValue={_.get(data, "hasPreviouslyAppliedToCanada")} field="hasPreviouslyAppliedToCanada" getFieldDecorator={getFieldDecorator} />
+        <VisaRadio label={tr(resources.step_personal.hasPreviouslyAppliedToCanada)} initialValue={_.get(data, "hasPreviouslyAppliedToCanada")} field="hasPreviouslyAppliedToCanada" getFieldDecorator={getFieldDecorator} lang={lang} />
 
         {getFieldValue("hasPreviouslyAppliedToCanada") === "0" && (
           <Row>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "antd";
 import * as constants from "../../../../utils/constants";
-import VisaRadio from "../../../../components/VisaRadio";
+import VisaRadio from "components/VisaRadio";
 import VisaSelectItem from "../../../../components/VisaSelectItem";
 import VisaDatePicker from "../../../../components/VisaDatePicker";
 import resources from "../../../../utils/resources";
@@ -43,7 +43,7 @@ class MyForm extends Component {
           <h2 className="visa-global-section-title">{tr(resources.step_travel.section_title)}</h2>
         </div>
 
-        <VisaRadio label={tr(resources.step_travel.isTravelDateKnown.label)} extra={tr(resources.step_travel.isTravelDateKnown.extra)} initialValue={_.get(data, "isTravelDateKnown")} field="isTravelDateKnown" getFieldDecorator={getFieldDecorator} />
+        <VisaRadio label={tr(resources.step_travel.isTravelDateKnown.label)} extra={tr(resources.step_travel.isTravelDateKnown.extra)} initialValue={_.get(data, "isTravelDateKnown")} field="isTravelDateKnown" getFieldDecorator={getFieldDecorator} lang={lang} />
 
         {getFieldValue("isTravelDateKnown") === "0" && (
           <>

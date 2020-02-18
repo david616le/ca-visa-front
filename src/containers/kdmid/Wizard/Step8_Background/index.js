@@ -1,46 +1,46 @@
-import React, { Component } from "react"
-import { Form, Button, Input } from 'antd'
-import * as constants from '../../../../utils/constants'
-import VisaRadio from "../../../../components/VisaRadio"
-import VisaSelectItem from "../../../../components/VisaSelectItem"
-import VisaExplain from "../../../../components/VisaExplain"
-import resources from '../../../../utils/resources'
-import { translate } from '../../../../utils/resources'
-import validators from 'containers/kdmid/Validators'
+import React, { Component } from "react";
+import { Form, Button, Input } from "antd";
+import * as constants from "../../../../utils/constants";
+import VisaRadio from "components/VisaRadio";
+import VisaSelectItem from "../../../../components/VisaSelectItem";
+import VisaExplain from "../../../../components/VisaExplain";
+import resources from "../../../../utils/resources";
+import { translate } from "../../../../utils/resources";
+import validators from "containers/kdmid/Validators";
 
-const { TextArea } = Input
+const { TextArea } = Input;
 
 class MyForm extends Component {
   static defaultProps = {
     showPrev: true,
-    showNext: true,
-  }
-  
-  handleDates = (data) => {
-    return data
-  }
+    showNext: true
+  };
+
+  handleDates = data => {
+    return data;
+  };
 
   render() {
     const { getFieldDecorator, isFieldTouched, setFieldsValue, getFieldValue } = this.props.form;
     const formItemLayout = {
-      layout: 'vertical',
+      layout: "vertical",
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 24 }
       },
       wrapperCol: {
-        sm: { span: 24 },
-      },
+        sm: { span: 24 }
+      }
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, lang, } = this.props
+    const { showPrev, showNext, onPrev, onNext, data, lang } = this.props;
 
-    const tr = (r) => translate(r, lang);
+    const tr = r => translate(r, lang);
 
-    getFieldDecorator('refusedVisaOrPermitOrDeniedEntryToCanada', { initialValue: _.get(data, 'refusedVisaOrPermitOrDeniedEntryToCanada') })
-    getFieldDecorator('committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere', { initialValue: _.get(data, 'committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere') })
-    getFieldDecorator('inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis', { initialValue: _.get(data, 'inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis') })
-    getFieldDecorator('isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker', { initialValue: _.get(data, 'isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker') })
-    getFieldDecorator('haveYouEverBeenDiagnosedWithTuberculosis', { initialValue: _.get(data, 'haveYouEverBeenDiagnosedWithTuberculosis') })
+    getFieldDecorator("refusedVisaOrPermitOrDeniedEntryToCanada", { initialValue: _.get(data, "refusedVisaOrPermitOrDeniedEntryToCanada") });
+    getFieldDecorator("committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere", { initialValue: _.get(data, "committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere") });
+    getFieldDecorator("inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis", { initialValue: _.get(data, "inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis") });
+    getFieldDecorator("isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker", { initialValue: _.get(data, "isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker") });
+    getFieldDecorator("haveYouEverBeenDiagnosedWithTuberculosis", { initialValue: _.get(data, "haveYouEverBeenDiagnosedWithTuberculosis") });
 
     return (
       <Form {...formItemLayout}>
@@ -51,57 +51,44 @@ class MyForm extends Component {
         <VisaExplain
           label={tr(resources.step_background.refusedVisaOrPermitOrDeniedEntryToCanada)}
           radioField="refusedVisaOrPermitOrDeniedEntryToCanada"
-          radioInitialValue={_.get(data, 'refusedVisaOrPermitOrDeniedEntryToCanada')}
-          radioValue={getFieldValue('refusedVisaOrPermitOrDeniedEntryToCanada')}
+          radioInitialValue={_.get(data, "refusedVisaOrPermitOrDeniedEntryToCanada")}
+          radioValue={getFieldValue("refusedVisaOrPermitOrDeniedEntryToCanada")}
           textField="refusedVisaOrPermitOrDeniedEntryToCanadaDetails"
           textLabel={tr(resources.step_background.refusedVisaOrPermitOrDeniedEntryToCanadaDetails)}
-          textInitialValue={_.get(data, 'refusedVisaOrPermitOrDeniedEntryToCanadaDetails')}
+          textInitialValue={_.get(data, "refusedVisaOrPermitOrDeniedEntryToCanadaDetails")}
           getFieldDecorator={getFieldDecorator}
           tr={tr}
+          lang={lang}
         />
 
         <VisaExplain
           label={tr(resources.step_background.committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere)}
           radioField="committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere"
-          radioInitialValue={_.get(data, 'committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere')}
-          radioValue={getFieldValue('committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere')}
+          radioInitialValue={_.get(data, "committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere")}
+          radioValue={getFieldValue("committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhere")}
           textField="committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhereDetails"
           textLabel={tr(resources.step_background.committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhereDetails)}
-          textInitialValue={_.get(data, 'committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhereDetails')}
+          textInitialValue={_.get(data, "committedOrArrestedOrChargedOrConvictedOfCriminalOffenceAnywhereDetails")}
           getFieldDecorator={getFieldDecorator}
           tr={tr}
+          lang={lang}
         />
 
-        <VisaRadio
-          label={tr(resources.step_background.inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis)}
-          initialValue={_.get(data, 'inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis')}
-          field="inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis"
-          getFieldDecorator={getFieldDecorator}
-        />
+        <VisaRadio label={tr(resources.step_background.inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis)} initialValue={_.get(data, "inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis")} field="inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis" getFieldDecorator={getFieldDecorator} lang={lang} />
 
-        {getFieldValue('inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis') === '0' && (
+        {getFieldValue("inThePastTwoYearsWereYouDiagnosedOrInCloseContactWithTuberculosis") === "0" && (
           <>
-            <VisaRadio
-              label={tr(resources.step_background.isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker)}
-              initialValue={_.get(data, 'isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker')}
-              field="isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker"
-              getFieldDecorator={getFieldDecorator}
-            />
-            {getFieldValue('isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker') === '0' && (
-              <VisaRadio
-                label={tr(resources.step_background.haveYouEverBeenDiagnosedWithTuberculosis)}
-                initialValue={_.get(data, 'haveYouEverBeenDiagnosedWithTuberculosis')}
-                field="haveYouEverBeenDiagnosedWithTuberculosis"
-                getFieldDecorator={getFieldDecorator}
-              />
+            <VisaRadio label={tr(resources.step_background.isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker)} initialValue={_.get(data, "isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker")} field="isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker" getFieldDecorator={getFieldDecorator} lang={lang} />
+            {getFieldValue("isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker") === "0" && (
+              <VisaRadio label={tr(resources.step_background.haveYouEverBeenDiagnosedWithTuberculosis)} initialValue={_.get(data, "haveYouEverBeenDiagnosedWithTuberculosis")} field="haveYouEverBeenDiagnosedWithTuberculosis" getFieldDecorator={getFieldDecorator} lang={lang} />
             )}
           </>
         )}
 
-        <VisaSelectItem 
+        <VisaSelectItem
           label={tr(resources.step_background.doYouHaveOneOfTheseConditions)}
           field="doYouHaveOneOfTheseConditions"
-          initialValue={_.get(data, 'doYouHaveOneOfTheseConditions')}
+          initialValue={_.get(data, "doYouHaveOneOfTheseConditions")}
           content={{
             combines: constants.export_list(tr(constants.doYouHaveOneOfTheseConditions))
           }}
@@ -110,22 +97,29 @@ class MyForm extends Component {
 
         <Form.Item label={tr(resources.step_background.haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails)}>
           {getFieldDecorator("haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails", {
-            initialValue: _.get(data, 'haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails'),
-            rules: [{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, '', false) }]
-          })(
-            <TextArea style={{textTransform: 'uppercase'}} rows={7}/>
-          )}
+            initialValue: _.get(data, "haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails"),
+            rules: [{ validator: (rule, value, callback) => validators.validateAlphaNumericPunctuation(rule, value, callback, "", false) }]
+          })(<TextArea style={{ textTransform: "uppercase" }} rows={7} />)}
         </Form.Item>
 
         <div className="visa-global-form-bottom-btn-group">
-          {showPrev && <Button style={{ marginRight: 8 }} onClick={(e) => this.props.handlePrev(e, this.props.form, this.handleDates)}>{tr(resources.prev)}</Button>}
-          {showNext && <Button type="primary" onClick={(e) => this.props.handleNext(e, this.props.form, this.handleDates)}>{tr(resources.next)}</Button>}
-          <Button type="link" onClick={(e) => this.props.handleSave(e, this.props.form, this.handleDates)}>{tr(resources.save_and_continue_later)}</Button>
+          {showPrev && (
+            <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+              {tr(resources.prev)}
+            </Button>
+          )}
+          {showNext && (
+            <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+              {tr(resources.next)}
+            </Button>
+          )}
+          <Button type="link" onClick={e => this.props.handleSave(e, this.props.form, this.handleDates)}>
+            {tr(resources.save_and_continue_later)}
+          </Button>
         </div>
       </Form>
-
     );
   }
 }
-const Form_Background = Form.create()(MyForm)
+const Form_Background = Form.create()(MyForm);
 export default Form_Background;

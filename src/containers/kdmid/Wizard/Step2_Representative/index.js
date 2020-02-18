@@ -58,7 +58,7 @@ class MyForm extends Component {
           </Col>
         </Row>
 
-        <VisaRadio label={tr(resources.step_representative.representativeCompensated)} initialValue={_.get(data, "representativeCompensated")} field="representativeCompensated" getFieldDecorator={getFieldDecorator} />
+        <VisaRadio label={tr(resources.step_representative.representativeCompensated)} initialValue={_.get(data, "representativeCompensated")} field="representativeCompensated" getFieldDecorator={getFieldDecorator} lang={lang} />
 
         <Row>
           <Col sm={12}>
