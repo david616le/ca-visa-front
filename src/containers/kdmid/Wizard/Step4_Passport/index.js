@@ -36,7 +36,7 @@ class MyForm extends Component {
       }
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, lang, isApplyingOnBehalfOfMinorChild } = this.props;
+    const { showPrev, showNext, onPrev, onNext, data, lang, isApplyingOnBehalfOfMinorChild, isRepresentative } = this.props;
 
     const tr = r => translate(r, lang);
 
@@ -125,7 +125,7 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               customRule={[
                 {
-                  validator: isApplyingOnBehalfOfMinorChild === "0" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-18, "years"), true) : validators.validateEarlierDate
+                  validator: isRepresentative == "1" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-100, "years"), true, moment(new Date(), "DD.MM.YYYY").add(-18, "years")) : validators.validateEarlierDate
                 }
               ]}
               setFieldsValue={setFieldsValue}

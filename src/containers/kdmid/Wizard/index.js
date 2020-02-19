@@ -222,8 +222,11 @@ class DS160_Wizard extends Component {
       data: _.get(ds160, field),
       dob,
       age,
+      isRepresentative: _.get(ds160, "welcome.isRepresentative"),
       isApplyingOnBehalfOfMinorChild: _.get(ds160, "welcome.isApplyingOnBehalfOfMinorChild")
     };
+
+    console.log(_.get(ds160, "welcome"));
 
     switch (field) {
       case "welcome":
