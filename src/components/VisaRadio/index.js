@@ -13,8 +13,6 @@ class VisaRadio extends Component {
 
     const tr = r => translate(r, lang);
 
-    console.log(tr(resources.yes));
-
     return (
       <Form.Item label={label} extra={extra}>
         {getFieldDecorator(field, {

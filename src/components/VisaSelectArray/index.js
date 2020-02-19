@@ -44,8 +44,6 @@ class VisaSelectArray extends Component {
     const tr = r => translate(r, lang);
     const languages = getFieldValue(keysField);
 
-    console.log(keysField, languages, initialValue);
-
     const formItems =
       languages &&
       languages.map((lang, index) => (

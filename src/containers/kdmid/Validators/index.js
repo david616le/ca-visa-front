@@ -183,13 +183,11 @@ const validateLaterDate = (rule, value, callback, required = true, todayFine = f
 };
 
 const validateBetweenDate = (rule, value, callback, field, fromDate, required = true, toDate = moment(new Date(), "DD.MM.YYYY")) => {
-  console.log(value);
   if (!value) {
     if (required) callback("This field is required");
     else callback();
     return;
   }
-  console.log(value, fromDate, toDate);
   if (!isValidDate(value) || !isValidDate(fromDate) || !isValidDate(toDate)) {
     callback("Invalid Date");
     return;

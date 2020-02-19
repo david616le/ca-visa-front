@@ -3,8 +3,6 @@ import { Result, Button, Spin } from 'antd'
 import './index.scss'
 
 export default function KdmidStatus({ loading, data }) {
-    console.log(loading, data)
-
     if(loading) {
         return <Spin tip="Please wait..." className="admin-page-ds160-check-status-modal-spin">
         </Spin>

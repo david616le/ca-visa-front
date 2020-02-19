@@ -152,7 +152,6 @@ class MyForm extends Component {
   };
 
   handleChange = (value, field) => {
-    console.log(value, field);
     const { setFieldsValue } = this.props.form;
     switch (field) {
       case "countryOfCitizenship":
@@ -210,7 +209,6 @@ class MyForm extends Component {
     let renderByCountryCode = "";
 
     const renderLawful = () => {
-      console.log(isPermanentResidentOfUSAndHaveProofOfPermResidence);
       if (isPermanentResidentOfUSAndHaveProofOfPermResidence !== "1" && !["32", "195"].includes(passportNotedNationality)) bNext = true;
       return (
         <>

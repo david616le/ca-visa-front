@@ -36,21 +36,29 @@ class MyForm extends Component {
       }
     };
 
-    const { showPrev, showNext, onPrev, onNext, data, lang, age, isApplyingOnBehalfOfMinorChild } = this.props;
+    const { showPrev, showNext, onPrev, onNext, data, lang, isApplyingOnBehalfOfMinorChild } = this.props;
 
     const tr = r => translate(r, lang);
 
     getFieldDecorator("passportNumber", {
       initialValue: _.get(data, "passportNumber")
     });
+    getFieldDecorator("dob", {
+      initialValue: _.get(data, "dob")
+    });
     getFieldDecorator("hasPreviouslyAppliedToCanada", {
       initialValue: _.get(data, "hasPreviouslyAppliedToCanada")
     });
 
     const passportNumber = getFieldValue("passportNumber");
+    const dob = getFieldValue("dob");
     const hasPreviouslyAppliedToCanada = getFieldValue("hasPreviouslyAppliedToCanada");
 
-    console.log(moment(new Date(), "DD.MM.YYYY").add(18, "years"));
+    let age = 0;
+
+    if (dob) {
+      age = moment().diff(moment(dob, "DD.MM.YYYY"), "years", true);
+    }
 
     return (
       <Form {...formItemLayout}>

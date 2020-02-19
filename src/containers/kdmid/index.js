@@ -28,7 +28,6 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values);
         if (agency) {
           history.push({
             pathname: "/visa/application-form",
