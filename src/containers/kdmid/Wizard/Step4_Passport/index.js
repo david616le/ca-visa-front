@@ -222,6 +222,7 @@ class MyForm extends Component {
                     validator: (rule, value, callback) => validators.validateAlphaNumeric(rule, value, callback, false)
                   }
                 ]}
+                required={false}
               />
             </Col>
             <Col sm={12}>
@@ -236,6 +237,7 @@ class MyForm extends Component {
                     validator: (rule, value, callback) => validators.validateReEnter(rule, value, callback, getFieldValue("uci"), "Values must match", false)
                   }
                 ]}
+                required={false}
               />
             </Col>
           </Row>

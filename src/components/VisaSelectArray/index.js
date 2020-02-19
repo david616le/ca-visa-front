@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { Form, Button, Select, Checkbox, Input, Icon } from 'antd';
-import VisaSelect from '../VisaSelect'
-import * as constants from '../../utils/constants'
-import * as utils from '../../utils'
-import resources, { translate } from '../../utils/resources';
+import { Form, Button, Select, Checkbox, Input, Icon } from "antd";
+import VisaSelect from "../VisaSelect";
+import * as constants from "../../utils/constants";
+import * as utils from "../../utils";
+import resources, { translate } from "../../utils/resources";
 
 class VisaSelectArray extends Component {
   static defaultProps = {
     extra: "",
     label: "",
-    required: true,
-  }
+    required: true
+  };
 
   remove = (k, keysField, dataField) => {
     let keys = this.props.getFieldValue(keysField);
-    let data = this.props.getFieldValue(dataField)
-    if (keys.length === 1) {
+    let data = this.props.getFieldValue(dataField);
+    if (keys.length === 0) {
       return;
     }
 
@@ -28,56 +28,48 @@ class VisaSelectArray extends Component {
     });
   };
 
-  add = (keysField) => {
+  add = keysField => {
     const keys = this.props.getFieldValue(keysField);
     const nextKeys = keys.concat("");
     this.props.setFieldsValue({
-      [keysField]: nextKeys,
+      [keysField]: nextKeys
     });
   };
 
   render() {
-
-    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, lang, combines, ...rest } = this.props
+    const { label, getFieldDecorator, getFieldValue, setFieldsValue, initialValue, keysField, arrayField, lang, combines, ...rest } = this.props;
 
     getFieldDecorator(keysField, { initialValue: utils.getInitialValue(initialValue) });
 
-    const tr = (r) => translate(r, lang);
+    const tr = r => translate(r, lang);
     const languages = getFieldValue(keysField);
 
-    console.log(keysField, languages, initialValue)
+    console.log(keysField, languages, initialValue);
 
-    const formItems = languages && languages.map((lang, index) => (
-      <Form.Item
-        label={index === 0 ? label : ''}
-        key={index}
-      >
-        {getFieldDecorator(`${arrayField}[${index}]`, {
-          validateTrigger: ['onChange', 'onBlur'],
-          initialValue: utils.getInitialValue(initialValue[index]),
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: "Please input or delete this field.",
-            },
-          ],
-        })(<VisaSelect combines={combines} style={{ width: '60%', marginRight: 8 }}/>)}
-        {languages.length > 1 ? (
-          <Icon
-            className="dynamic-delete-button"
-            type="minus-circle-o"
-            onClick={() => this.remove(index, keysField, arrayField)}
-          />
-        ) : null}
-      </Form.Item>
-    ));
+    const formItems =
+      languages &&
+      languages.map((lang, index) => (
+        <Form.Item label={index === 0 ? label : ""} key={index}>
+          {getFieldDecorator(`${arrayField}[${index}]`, {
+            validateTrigger: ["onChange", "onBlur"],
+            initialValue: utils.getInitialValue(initialValue[index]),
+            rules: [
+              {
+                required: true,
+                whitespace: true,
+                message: "Please input or delete this field."
+              }
+            ]
+          })(<VisaSelect combines={combines} style={{ width: "60%", marginRight: 8 }} />)}
+          {languages.length > 0 ? <Icon className="dynamic-delete-button" type="minus-circle-o" onClick={() => this.remove(index, keysField, arrayField)} /> : null}
+        </Form.Item>
+      ));
 
     return (
       <>
         {formItems}
         <Form.Item>
-          <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: '60%' }}>
+          <Button type="dashed" onClick={() => this.add(keysField)} style={{ width: "60%" }}>
             <Icon type="plus" /> {tr(resources.add_another)}
           </Button>
         </Form.Item>
