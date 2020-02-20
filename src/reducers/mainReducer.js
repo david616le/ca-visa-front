@@ -1,12 +1,12 @@
-import { API_GITHUB, DS160 } from '../actions/types'
-import objectAssignDeep from 'object-assign-deep'
+import { API_GITHUB, DS160 } from "../actions/types";
+import objectAssignDeep from "object-assign-deep";
 
 const initialState = {
   loading: false,
 
   applicationId: null,
 
-  email: '',
+  email: "",
   step_index: 1,
   loading_pay: false,
   paid: false,
@@ -18,15 +18,15 @@ const initialState = {
       bVenezuela: undefined,
       bHasGreenCard: undefined,
       bVenezuelaPassportExpired: undefined,
-      bUCI: undefined,
+      bUCI: undefined
     },
-  
+
     welcome: {
-      language: 'en-US',
+      language: "en-US",
       isRepresentative: undefined,
-      isApplyingOnBehalfOfMinorChild: undefined,
+      isApplyingOnBehalfOfMinorChild: undefined
     },
-  
+
     prerequisite: {
       countryOfCitizenship: undefined,
       hasPassportIssuedByMFA: undefined,
@@ -40,7 +40,7 @@ const initialState = {
       usaResidentCardNumber: undefined,
       usaResidentCardNumberReEnter: undefined,
       usaResidentCardExpiryDate: undefined,
-      passportNotedNationality: undefined,
+      passportNotedNationality: undefined
     },
     personalDetails: {
       lastName: undefined,
@@ -48,7 +48,7 @@ const initialState = {
       dob: undefined,
       countryOfBirth: undefined,
       cityTownOfBirth: undefined,
-      additionalCitizenships: [undefined],
+      additionalCitizenships: [],
       additionalCountriesOfCitizenship: undefined,
       taiwanIDNumber: undefined,
       taiwanIDNumberReEnter: undefined,
@@ -63,7 +63,7 @@ const initialState = {
       passportNumber: undefined,
       passportNumberReEnter: undefined,
       issueDate: undefined,
-      expiryDate: undefined,
+      expiryDate: undefined
     },
     employmentDetails: {
       occupation: undefined,
@@ -73,7 +73,7 @@ const initialState = {
       province: undefined,
       state: undefined,
       city: undefined,
-      fromDateYear: undefined,
+      fromDateYear: undefined
     },
     contactDetails: {
       languageOfPreference: undefined,
@@ -89,14 +89,14 @@ const initialState = {
       state: undefined,
       district: undefined,
       postalCode: undefined,
-      zipCode: undefined,
+      zipCode: undefined
     },
     travelDetails: {
       isTravelDateKnown: undefined,
       travelDate: undefined,
       travelDateTimeHour: undefined,
       travelDateTimeMinute: undefined,
-      travelDateTimeTimezone: undefined,
+      travelDateTimeTimezone: undefined
     },
     backgroundQuestions: {
       refusedVisaOrPermitOrDeniedEntryToCanada: undefined,
@@ -107,14 +107,14 @@ const initialState = {
       isYourContactWithTuberculosisTheResultOfBeingAHeathCareWorker: undefined,
       haveYouEverBeenDiagnosedWithTuberculosis: undefined,
       doYouHaveOneOfTheseConditions: undefined,
-      haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails: undefined,
+      haveOrWillHaveHealthInsuranceValidInCanadaDuringStayDetails: undefined
     },
     consentAndDeclaration: {
       inAggreance: undefined,
       fullName: undefined,
       dateSignedYear: undefined,
       dateSignedMonth: undefined,
-      dateSignedDay: undefined,
+      dateSignedDay: undefined
     },
     representative: {
       representativeRelationship: undefined,
@@ -130,7 +130,7 @@ const initialState = {
       faxNumber: undefined,
       emailAddress: undefined,
       declareContactAndInformationIsTruthy: undefined,
-      understandAndAccept: undefined,
+      understandAndAccept: undefined
     },
     etaExpansion: {
       hasCanadianTemporaryVisa: undefined,
@@ -139,10 +139,10 @@ const initialState = {
       nonImmigrantVisaNumberReEnter: undefined,
       nonImmigrantVisaNumberExpiryDateYear: undefined,
       nonImmigrantVisaNumberExpiryDateMonth: undefined,
-      nonImmigrantVisaNumberExpiryDateDay: undefined,
+      nonImmigrantVisaNumberExpiryDateDay: undefined
     }
   }
-}
+};
 function mainReducer(state = initialState, action) {
   switch (action.type) {
     case DS160.DS160_INIT_VISIT_AREA: {
@@ -155,7 +155,7 @@ function mainReducer(state = initialState, action) {
             visitArea: null
           }
         }
-      }
+      };
     }
     case DS160.DS160_GET_REQUEST: {
       return {
@@ -202,19 +202,19 @@ function mainReducer(state = initialState, action) {
       return {
         ...state,
         step_index: state.step_index + 1
-      }
+      };
     }
     case DS160.DS160_PREV_STEP: {
       return {
         ...state,
         step_index: state.step_index - 1
-      }
+      };
     }
     case DS160.DS160_UPDATE_VALUES: {
       return {
         ...state,
         ds160: objectAssignDeep(state.ds160, action.values)
-      }
+      };
     }
     case DS160.DS160_INIT_STATE: {
       return {
@@ -225,29 +225,28 @@ function mainReducer(state = initialState, action) {
           ...action.initValue.ds160,
           welcome: {
             ...initialState.ds160.welcome,
-            ...action.initValue.ds160.welcome,
+            ...action.initValue.ds160.welcome
           },
           before: {
             ...initialState.ds160.before,
-            ...action.initValue.ds160.before,
+            ...action.initValue.ds160.before
           }
         }
-      }
+      };
     }
     case DS160.DS160_CHECKOUT_REQUEST: {
       return {
         ...state,
         loading_pay: true
-      }
+      };
     }
     case DS160.DS160_CHECKOUT_SUCCESS: {
-      
       return {
         ...state,
         loading_pay: false,
         paid: action.data.response == 1 ? true : false,
-        checkout_result: action.data.response == 1 ? true : false,
-      }
+        checkout_result: action.data.response == 1 ? true : false
+      };
     }
     case DS160.DS160_CHECKOUT_FAILURE: {
       return {
@@ -255,19 +254,19 @@ function mainReducer(state = initialState, action) {
         loading_pay: false,
         paid: false,
         checkout_result: false
-      }
+      };
     }
 
     case DS160.RESET_CHECKOUT_RESULT: {
       return {
         ...state,
         checkout_result: null
-      }
+      };
     }
     default: {
-      return state
+      return state;
     }
   }
 }
 
-export default mainReducer
+export default mainReducer;
