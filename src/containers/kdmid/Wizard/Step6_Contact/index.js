@@ -100,7 +100,7 @@ class MyForm extends Component {
             <VisaInput label={tr(resources.step_residential.aptUnit)} field="aptUnit" initialValue={_.get(data, "aptUnit")} getFieldDecorator={getFieldDecorator} maxLength={10} required={false} />
           </Col>
           <Col sm={12}>
-            <VisaInput label={tr(resources.step_residential.streetNo)} field="streetNo" initialValue={_.get(data, "streetNo")} getFieldDecorator={getFieldDecorator} maxLength={30} />
+            <VisaInput label={tr(resources.step_residential.streetNo)} field="streetNo" initialValue={_.get(data, "streetNo")} getFieldDecorator={getFieldDecorator} maxLength={30} customRule={[{ validator: validators.validateAlphaNumericSpace }]}/>
           </Col>
           <Col sm={12}>
             <VisaInput label={tr(resources.step_residential.streetAddress)} field="streetAddress" initialValue={_.get(data, "streetAddress")} getFieldDecorator={getFieldDecorator} maxLength={100} customRule={[{ validator: validators.validateAlphaNumericPunctuation }]} />
