@@ -43,7 +43,7 @@ class MyForm extends Component {
 
     let bNext = true;
 
-    if (country === "37") bNext = false;
+    if (country === "Canada") bNext = false;
 
     return (
       <Form {...formItemLayout}>
@@ -130,7 +130,7 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
             />
           </Col>
-          {country === "223" && (
+          {country === "United States of America" && (
             <>
               <Col sm={12}>
                 <VisaSelectItem
@@ -148,7 +148,7 @@ class MyForm extends Component {
               </Col>
             </>
           )}
-          {country && country !== "223" && country !== "37" && (
+          {country && country !== "United States of America" && country !== "Canada" && (
             <Col sm={12}>
               <VisaInput
                 label={tr(resources.step_residential.district)}
@@ -163,7 +163,7 @@ class MyForm extends Component {
           )}
         </Row>
 
-        {country === "37" && (
+        {country === "Canada" && (
           <Alert
             message="You indicate that you live in Canada. If you are a Canadian permanent resident, you cannot apply for an eTA."
             description={<div>You must present your valid PR card or permanent resident travel document (PRTD) to board your flight to Canada. Find out how to apply for, renew or replace a PR Card.</div>}
