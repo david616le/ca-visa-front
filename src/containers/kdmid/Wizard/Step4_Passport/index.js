@@ -125,7 +125,8 @@ class MyForm extends Component {
               getFieldDecorator={getFieldDecorator}
               customRule={[
                 {
-                  validator: isRepresentative == "1" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-100, "years"), true, moment(new Date(), "DD.MM.YYYY").add(-18, "years")) : validators.validateEarlierDate
+                  validator: isRepresentative == "1" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-100, "years"), true, moment(new Date(), "DD.MM.YYYY").add(-18, "years")) : 
+                            (isApplyingOnBehalfOfMinorChild == "0" ? (rule, value, callback) => validators.validateBetweenDate(rule, value, callback, tr(resources.step_passport.dob), moment(new Date(), "DD.MM.YYYY").add(-18, "years"), true) : validators.validateEarlierDate)
                 }
               ]}
               setFieldsValue={setFieldsValue}
