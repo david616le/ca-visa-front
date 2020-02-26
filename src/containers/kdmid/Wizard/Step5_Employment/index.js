@@ -33,6 +33,7 @@ class MyForm extends Component {
     const tr = (r) => translate(r, lang);
 
     getFieldDecorator('occupation', { initialValue: _.get(data, 'occupation') })
+    getFieldDecorator('country', { initialValue: _.get(data, 'country') })
 
     const occupation = getFieldValue('occupation')
     const yearsOptions = []
