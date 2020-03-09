@@ -21,8 +21,8 @@ const validateName = (rule, value, callback, field, required = true) => {
     else callback();
     return;
   }
-
-  if (/^[a-zA-Zéèêëû](.*[a-zA-Zéèêëû\-' ])?$/.test(value) == false) {
+  if (/^[a-zA-Zéèêëû\-\' ]+$/.test(value) == false) {
+  // if (/^[a-zA-Zéèêëû](.*[a-zA-Zéèêëû\-\' ])?$/.test(value) == false) {
     callback(`Use English and French letters only. Example: Aa, Bb, Cc, French accents such as é, è, ê, ë, û, hyphens, apostrophes, and spaces; cannot begin with a hyphen, apostrophe, or space.
       If there are other special letters or characters in your name, use the letter without the accent. For example, use "z" instead of "ź."`);
     return;
