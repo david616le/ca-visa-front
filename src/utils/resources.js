@@ -371,7 +371,14 @@ const resources = {
         de: `Die Bestätigungs-e-mail müssen mit Ihrem e-mail-Adresse.`,
         it: `L'e-mail di conferma deve corrispondere il vostro indirizzo di posta elettronica.`
       }
-    }
+    },
+    required_sign: {
+      en: 'Please sign',
+      fr: 'Veuillez signer',
+      es: 'Por favor firme',
+      de: 'Bitte melden',
+      it: 'Si prega di firmare',
+  },
   },
   yes: {
     en: `Yes`,
@@ -1243,6 +1250,99 @@ const resources = {
       de: `Ich willige ein, dass bei der Eingabe meines Namen und klicken auf anmelden, bin ich elektronisch signieren meiner Anwendung.`,
       it: `Sono d'accordo che digitando il mio nome e fare clic su firma, io la firma elettronica e la mia applicazione.`
     },
+    section_title_payment: {
+      en: "Payment Information",
+      fr: "Les Informations De Paiement",
+      es: "La Información De Pago",
+      de: "Zahlungsinformationen",
+      it: "Informazioni Di Pagamento"
+    },
+    section_descr_payment: {
+      en: "Note: Please enter the first and last name of the person who makes the payment.",
+      fr: "Remarque: Veuillez saisir le Prénom et le Nom de la personne qui effectue le paiement.",
+      es: "Nota: por Favor, introduzca el nombre y apellido de la persona que realiza el pago.",
+      de: "Hinweis: Bitte geben Sie den ersten und letzten Namen der person, die macht die Zahlung.",
+      it: "Nota: si Prega di inserire il nome e il cognome della persona che effettua il pagamento."
+    },
+    payer: {
+      label: {
+        en: "Payer's Name",
+        fr: "Nom du Payeur",
+        es: "Del ordenante Nombre",
+        de: "Zahlers Name",
+        it: "Nome del pagatore"
+      },
+      surname: {
+        en: "First Name",
+        fr: "Prénom",
+        es: "Primer Nombre",
+        de: "Vorname",
+        it: "Nome"
+      },
+      given_name: {
+        en: "Last Name",
+        fr: "Nom de Famille",
+        es: "Apellido",
+        de: "Nachname",
+        it: "Cognome"
+      },
+      phone: {
+        en: "Payer Phone Number",
+        fr: "Numéro De Téléphone",
+        es: "Ordenante Número De Teléfono",
+        de: "Zahler Telefonnummer",
+        it: "Pagatore Numero Di Telefono"
+      },
+      passport: {
+        en: "Payer's Passport Number",
+        fr: "Numéro de Passeport du payeur",
+        es: "Del ordenante Número de Pasaporte",
+        de: "Zahlers Pass-Nummer",
+        it: "Pagatore Numero di Passaporto"
+      },
+      email: {
+        en: "Payer's Email",
+        fr: "E-Mail du payeur",
+        es: "Pagador de Correo electrónico",
+        de: "Zahlers E-Mail",
+        it: "Del pagatore e-Mail"
+      },
+      address: {
+        en: "Address",
+        fr: "Adresse",
+        es: "Dirección",
+        de: "Adresse",
+        it: "Indirizzo"
+      }
+    },
+    b_info_confirm: {
+      label: {
+        en: "Information Confirmation",
+        fr: "Confirmation Des Informations",
+        es: "Información De Confirmación",
+        de: "Informationen Bestätigung",
+        it: "Informazioni Di Conferma"
+      },
+      check: {
+        en:
+          "I confirm that the information provided on this form is correct and accurate to the best of my knowledge. I have read and agreed with the Disclaimer, the Terms and Conditions and the Refund Policy. I understand that this transaction is Non-Refundable. This site is not a Canadian Government entity and is in no way associated with any Canadian Embassy or Consulate and if a cardholder attempts to falsely report that a transaction was fraudulent and requests a chargeback of an application fee, the Embassy will be informed and it may result in cancellation of any visas already scheduled. Your submission of credit card information, or any kind of payment card information, constitutes your authorization for our agency to charge your card for the services ordered and for any related fees or expenses. You further agree to abide by the terms of your card issuer’s agreement. This applies to any fee charged, incurred or paid by our agency for or in any way relating to publication requirements for any document we prepare and/or file at your request whether the filing is ultimately accepted or not.",
+        fr:
+          "Je confirme que les informations fournies sur ce formulaire sont correctes et exactes à ma connaissance. J'ai lu et accepté les mentions légales, les conditions générales et la politique de remboursement. Je comprends que cette transaction n'est pas remboursable. Ce site n'est pas une entité du gouvernement canadien et n'est en aucun cas associé à une ambassade ou un consulat du Canada et si un titulaire de carte tente de signaler faussement qu'une transaction a été frauduleuse et demande un rejet de frais de dossier, l'ambassade en sera informée et pourra entraîner l'annulation de tout visa déjà prévu. Votre soumission d'informations de carte de crédit, ou tout type d'informations de carte de paiement, constitue votre autorisation pour notre agence de facturer votre carte pour les services commandés et pour tous frais ou dépenses connexes. Vous vous engagez en outre à respecter les termes de l'accord de l'émetteur de votre carte. Cela s'applique à tous les frais facturés, engagés ou payés par notre agence pour ou de quelque manière que ce soit concernant les exigences de publication pour tout document que nous préparons et / ou déposons à votre demande, que le dépôt soit finalement accepté ou non.",
+        es:
+          "Confirmo que la información proporcionada en este formulario es correcta y precisa según mi leal saber y entender. He leído y acepto el Descargo de responsabilidad, los Términos y condiciones y la Política de reembolso. Entiendo que esta transacción no es reembolsable. Este sitio no es una entidad del Gobierno de Canadá y no está asociado de ninguna manera con ninguna Embajada o Consulado de Canadá y si un titular de tarjeta intenta informar falsamente que una transacción fue fraudulenta y solicita una devolución de cargo de una tarifa de solicitud, la Embajada será informada y puede resultará en la cancelación de cualquier visa ya programada. Su envío de información de tarjeta de crédito, o cualquier tipo de información de tarjeta de pago, constituye su autorización para que nuestra agencia le cobre a su tarjeta los servicios solicitados y cualquier tarifa o gasto relacionado. Además, acepta cumplir con los términos del acuerdo del emisor de su tarjeta. Esto se aplica a cualquier tarifa cobrada, incurrida o pagada por nuestra agencia por o de alguna manera relacionada con los requisitos de publicación de cualquier documento que preparemos y / o presentemos a su solicitud, ya sea que la presentación sea finalmente aceptada o no.",
+        de:
+          "Ich bestätige, dass die auf diesem Formular angegebenen Informationen nach bestem Wissen und Gewissen korrekt und korrekt sind. Ich habe den Haftungsausschluss, die Allgemeinen Geschäftsbedingungen und die Rückerstattungsrichtlinie gelesen und bin damit einverstanden. Ich verstehe, dass diese Transaktion nicht erstattungsfähig ist. Diese Website ist keine Einrichtung der kanadischen Regierung und in keiner Weise mit einer kanadischen Botschaft oder einem kanadischen Konsulat verbunden. Wenn ein Karteninhaber versucht, fälschlicherweise zu melden, dass eine Transaktion betrügerisch war, und eine Rückbuchung einer Antragsgebühr beantragt, wird die Botschaft darüber informiert führen zur Stornierung bereits geplanter Visa. Ihre Übermittlung von Kreditkarteninformationen oder jeglicher Art von Zahlungskarteninformationen stellt Ihre Berechtigung für unsere Agentur dar, Ihre Karte für die bestellten Dienstleistungen und die damit verbundenen Gebühren oder Kosten zu belasten. Sie erklären sich ferner damit einverstanden, die Bedingungen der Vereinbarung Ihres Kartenherausgebers einzuhalten. Dies gilt für alle Gebühren, die von unserer Agentur für oder in irgendeiner Weise im Zusammenhang mit Veröffentlichungsanforderungen für Dokumente erhoben werden, die wir auf Ihre Anfrage hin erstellen und / oder einreichen, unabhängig davon, ob die Einreichung letztendlich akzeptiert wird oder nicht.",
+        it:
+          "Confermo che le informazioni fornite in questo modulo sono corrette e accurate al meglio delle mie conoscenze. Ho letto e accettato il Disclaimer, i Termini e condizioni e la Politica di rimborso. Comprendo che questa transazione non è rimborsabile. Questo sito non è un ente governativo canadese e non è in alcun modo associato ad alcuna ambasciata o consolato canadese e se un titolare di carta tenta di segnalare erroneamente che una transazione è stata fraudolenta e richiede un riaddebito di una tassa di domanda, l'ambasciata verrà informata e potrebbe comportare la cancellazione di tutti i visti già programmati. L'invio dei dati della carta di credito, o qualsiasi tipo di informazione sulla carta di pagamento, costituisce l'autorizzazione per la nostra agenzia ad addebitare la carta per i servizi ordinati e per eventuali commissioni o spese correlate. Accetti inoltre di rispettare i termini dell'accordo dell'emittente della tua carta. Questo vale per qualsiasi commissione addebitata, sostenuta o pagata dalla nostra agenzia per o in qualsiasi modo relativa ai requisiti di pubblicazione per qualsiasi documento che prepariamo e / o archiviamo su vostra richiesta, indipendentemente dal fatto che il deposito sia accettato o meno."
+      }
+    },
+    signature: {
+      en: 'Signature',
+      fr: 'Signature',
+      es: 'Firma',
+      de: 'Signatur',
+      it: 'Firma',
+  },
     inAggreance: {
       label: {
         en: `I Agree`,

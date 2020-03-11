@@ -226,8 +226,6 @@ class DS160_Wizard extends Component {
       isApplyingOnBehalfOfMinorChild: _.get(ds160, "welcome.isApplyingOnBehalfOfMinorChild")
     };
 
-    console.log(_.get(ds160, "welcome"));
-
     switch (field) {
       case "welcome":
         form_render = <FormWelcome {...shared_params} showPrev={false} />;
