@@ -71,31 +71,6 @@ class MyForm extends Component {
     return (
       <Form {...formItemLayout}>
         <div className="visa-global-field visa-global-border-bottom">
-          <h2 className="visa-global-section-title">{tr(resources.step_consent.section_title)}</h2>
-          {/* <div className="visa-global-section-description">{tr(resources.step_consent.section_description_1)}</div> */}
-          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_2)}</div>
-          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_3)}</div>
-          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_4)}</div>
-        </div>
-
-        <Form.Item label={tr(resources.step_consent.inAggreance.label)} required>
-          {getFieldDecorator('inAggreance', {
-            initialValue: _.get(data, 'inAggreance'),
-            valuePropName: "checked",
-            rules: [{
-              required: true, 
-              message: tr(resources.validations.required), 
-              transform: value => (value || undefined),  // Those two lines
-              type: 'boolean'
-            }],
-          })(
-            <Checkbox>
-              {tr(resources.step_consent.inAggreance.extra)}
-            </Checkbox>
-          )}
-        </Form.Item>
-
-        <div className="visa-global-field visa-global-border-bottom">
           <h2 className="visa-global-section-title">{tr(resources.step_consent.section_title_payment)}</h2>
           <div className="visa-global-section-description">{tr(resources.step_consent.section_descr_payment)}</div>
         </div>
@@ -205,6 +180,31 @@ class MyForm extends Component {
               </>,
             )
           }
+        </Form.Item>
+
+        <div className="visa-global-field visa-global-border-bottom">
+          <h2 className="visa-global-section-title">{tr(resources.step_consent.section_title)}</h2>
+          {/* <div className="visa-global-section-description">{tr(resources.step_consent.section_description_1)}</div> */}
+          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_2)}</div>
+          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_3)}</div>
+          <div className="visa-global-section-description">{tr(resources.step_consent.section_description_4)}</div>
+        </div>
+
+        <Form.Item label={tr(resources.step_consent.inAggreance.label)} required>
+          {getFieldDecorator('inAggreance', {
+            initialValue: _.get(data, 'inAggreance'),
+            valuePropName: "checked",
+            rules: [{
+              required: true, 
+              message: tr(resources.validations.required), 
+              transform: value => (value || undefined),  // Those two lines
+              type: 'boolean'
+            }],
+          })(
+            <Checkbox>
+              {tr(resources.step_consent.inAggreance.extra)}
+            </Checkbox>
+          )}
         </Form.Item>
 
         <Row>
