@@ -43,7 +43,7 @@ class MyForm extends Component {
             {tr(resources.submit_your_application)}
           </h2>
         </div>
-        <div className="visa-form-bottom-btn-group">
+        <div className="visa-global-form-bottom-btn-group">
           {showPrev && (
             <Button
               style={{ marginRight: 8 }}
