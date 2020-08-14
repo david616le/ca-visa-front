@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import VisaBanner from "@bit/jasonhendricksdev.visa.visa-banner";
-import VisaHeader from "@bit/jasonhendricksdev.visa.visa-header";
+import VisaHeader from "components/VisaHeader";
+import VisaBanner from "components/VisaBanner";
 import { DS160 } from "../../../actions/types";
 import { withCookies } from "react-cookie";
 import { Spin, notification } from "antd";
@@ -10,14 +10,14 @@ import Form_DS160_SaveAndContinue from "./EmailForm";
 
 import "./index.scss";
 
-const openNotificationWithIcon = type => {
+const openNotificationWithIcon = (type) => {
   notification[type]({
     message:
       type == "success" ? "Successfully sent!" : "Failed to send an email!",
     description:
       type == "success"
         ? "Thank you for saving Electronic Travel Authorization Application"
-        : `Please try again to send an email`
+        : `Please try again to send an email`,
   });
 };
 
@@ -25,23 +25,23 @@ class DS160_Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sending: false
+      sending: false,
     };
   }
 
-  onSendLink = data => {
+  onSendLink = (data) => {
     const { applicationId, cookies } = this.props;
     this.setState({ sending: true });
     this.props.sendLinkEmail(
       DS160.SEND_LINK_EMAIL_REQUEST,
       { ...data, applicationId },
-      res => {
+      (res) => {
         this.setState({ sending: false });
         if (res && res.status == "success") {
           openNotificationWithIcon("success");
           cookies.set("sendLinkEmailSuccess", data.email, {
             path: "/",
-            maxAge: 3600
+            maxAge: 3600,
           });
         } else {
           openNotificationWithIcon("error");
@@ -94,17 +94,17 @@ class DS160_Checkout extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     sendLinkEmail: (type, payload, cb) => {
       dispatch({ type, payload, cb });
-    }
+    },
   };
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.ca.loading,
-  applicationId: state.ca.applicationId
+  applicationId: state.ca.applicationId,
 });
 
 export default withCookies(

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Icon, Form, Select, Row, Col, Checkbox, Alert } from "antd";
-import VisaHeader from "@bit/jasonhendricksdev.visa.visa-header";
-import VisaBanner from "@bit/jasonhendricksdev.visa.visa-banner";
+import VisaHeader from "components/VisaHeader";
+import VisaBanner from "components/VisaBanner";
 import VisaRadio from "components/VisaRadio";
 import VisaInput from "components/VisaInput";
 import { DS160 } from "../../actions/types";
@@ -18,7 +18,7 @@ import "./index.scss";
 const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
   const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
   const [lang, setLanguage] = useState("en-US");
-  const tr = r => translate(r, lang);
+  const tr = (r) => translate(r, lang);
 
   useEffect(() => {
     setLanguage(initLang);
@@ -31,7 +31,7 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
         if (agency) {
           history.push({
             pathname: "/visa/application-form",
-            search: `?agency=${agency}`
+            search: `?agency=${agency}`,
           });
         } else {
           history.push("/visa/application-form");
@@ -39,12 +39,12 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
         resetState(DS160.DS160_INIT_STATE, {
           ds160: {
             welcome: {
-              language: lang
+              language: lang,
             },
             before: {
-              ...values
-            }
-          }
+              ...values,
+            },
+          },
         });
       }
     });
@@ -57,19 +57,21 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
   const formItemLayout = {
     layout: "vertical",
     labelCol: {
-      xs: { span: 24 }
+      xs: { span: 24 },
     },
     wrapperCol: {
       sm: { span: 24 },
-      md: { span: 12 }
-    }
+      md: { span: 12 },
+    },
   };
 
   getFieldDecorator("bPassportFranceOrVenezuela", { initialValue: undefined });
   getFieldDecorator("bFrance", { initialValue: undefined });
   getFieldDecorator("bVenezuelaPassportExpired", { initialValue: undefined });
 
-  const bPassportFranceOrVenezuela = getFieldValue("bPassportFranceOrVenezuela");
+  const bPassportFranceOrVenezuela = getFieldValue(
+    "bPassportFranceOrVenezuela"
+  );
   const bFrance = getFieldValue("bFrance");
   const bVenezuelaPassportExpired = getFieldValue("bVenezuelaPassportExpired");
 
@@ -80,11 +82,23 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
       <div className="visa-ds160__content container">
         <Form {...formItemLayout}>
           <div className="visa-global-field visa-global-border-bottom">
-            <h2 className="visa-global-section-title ant-form-item-required">{tr(resources.before.section_title)}</h2>
+            <h2 className="visa-global-section-title ant-form-item-required">
+              {tr(resources.before.section_title)}
+            </h2>
           </div>
 
-          <Form.Item label={tr(resources.language.label)} extra={tr(resources.language.extra)}>
-            <Select placeholder="Select an Option" value={lang} onChange={onChangeLang} optionFilterProp="children" showSearch style={{ width: "300px" }}>
+          <Form.Item
+            label={tr(resources.language.label)}
+            extra={tr(resources.language.extra)}
+          >
+            <Select
+              placeholder="Select an Option"
+              value={lang}
+              onChange={onChangeLang}
+              optionFilterProp="children"
+              showSearch
+              style={{ width: "300px" }}
+            >
               <Option value="en-US">ENGLISH</Option>
               <Option value="fr-FR">FRANÇAIS (FRENCH)</Option>
               <Option value="es-ES">ESPAÑOL (SPANISH)</Option>
@@ -107,7 +121,7 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
             getFieldDecorator={getFieldDecorator}
             combines={[
               { label: tr(resources.yes), value: true },
-              { label: tr(resources.no), value: false }
+              { label: tr(resources.no), value: false },
             ]}
           />
 
@@ -119,13 +133,15 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
                 getFieldDecorator={getFieldDecorator}
                 combines={[
                   { label: "France", value: true },
-                  { label: "Venezuela", value: false }
+                  { label: "Venezuela", value: false },
                 ]}
               />
               {getFieldValue("bFrance") === true && (
                 <>
                   <div className="visa-global-field visa-global-border-bottom">
-                    <h2 className="visa-global-section-title ant-form-item-required">{tr(resources.before.section_french)}</h2>
+                    <h2 className="visa-global-section-title ant-form-item-required">
+                      {tr(resources.before.section_french)}
+                    </h2>
                   </div>
                   {tr(resources.before.section_french_html)}
                 </>
@@ -138,10 +154,11 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
                     getFieldDecorator={getFieldDecorator}
                     combines={[
                       { label: tr(resources.yes), value: true },
-                      { label: tr(resources.no), value: false }
+                      { label: tr(resources.no), value: false },
                     ]}
                   />
-                  {getFieldValue("bHasGreenCard") === false && tr(resources.before.alert_no_greencard)}
+                  {getFieldValue("bHasGreenCard") === false &&
+                    tr(resources.before.alert_no_greencard)}
                   {getFieldValue("bHasGreenCard") === true && (
                     <>
                       <VisaRadio
@@ -150,7 +167,7 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
                         getFieldDecorator={getFieldDecorator}
                         combines={[
                           { label: tr(resources.yes), value: true },
-                          { label: tr(resources.no), value: false }
+                          { label: tr(resources.no), value: false },
                         ]}
                       />
                       {getFieldValue("bVenezuelaPassportExpired") === true && (
@@ -162,10 +179,12 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
                             getFieldDecorator={getFieldDecorator}
                             combines={[
                               { label: tr(resources.yes), value: true },
-                              { label: tr(resources.no), value: false }
+                              { label: tr(resources.no), value: false },
                             ]}
                           />
-                          {(getFieldValue("bUCI") === true || getFieldValue("bUCI") === false) && tr(resources.before.alert_expired)}
+                          {(getFieldValue("bUCI") === true ||
+                            getFieldValue("bUCI") === false) &&
+                            tr(resources.before.alert_expired)}
                         </>
                       )}
                     </>
@@ -175,9 +194,19 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
             </>
           )}
 
-          {(bPassportFranceOrVenezuela === false || (bPassportFranceOrVenezuela === true && bFrance === true) || (bPassportFranceOrVenezuela === true && bFrance === false && bVenezuelaPassportExpired === false)) && (
-            <div className="visa-global-btn-group" style={{ textAlign: "center", margin: "40px 0px" }}>
-              <Button type="primary" onClick={e => onStartApplication(e, form)}>
+          {(bPassportFranceOrVenezuela === false ||
+            (bPassportFranceOrVenezuela === true && bFrance === true) ||
+            (bPassportFranceOrVenezuela === true &&
+              bFrance === false &&
+              bVenezuelaPassportExpired === false)) && (
+            <div
+              className="visa-global-btn-group"
+              style={{ textAlign: "center", margin: "40px 0px" }}
+            >
+              <Button
+                type="primary"
+                onClick={(e) => onStartApplication(e, form)}
+              >
                 {tr(resources.before.start_button)}
                 <Icon type="right" />
               </Button>
@@ -189,11 +218,11 @@ const MyForm = ({ agency, history, resetState, initLang = "en-US", form }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     resetState: (type, initValue) => {
       dispatch({ type, initValue });
-    }
+    },
   };
 };
 const DS160_HOME = Form.create()(MyForm);
