@@ -208,6 +208,8 @@ class MyForm extends Component {
 
     let renderByCountryCode = "";
 
+    console.log('passportNotedNationality', passportNotedNationality, 'countryOfCitizenship', countryOfCitizenship)
+
     const renderLawful = () => {
       if (isPermanentResidentOfUSAndHaveProofOfPermResidence !== "1" && !["32", "195"].includes(passportNotedNationality)) bNext = true;
       return (
@@ -447,6 +449,11 @@ class MyForm extends Component {
             {getFieldValue("hasPassportIssuedByMFA") === "1" && renderLawful()}
           </>
         );
+        break;
+      case "200":
+        renderByCountryCode = (
+          <Alert message="As a U.S. citizen, you are exempt from the eTA requirement." description={<div>You do not need an eTA to travel to Canada. Make sure to travel with valid proof of U.S. citizenship such as a passport and other acceptable travel documents.</div>} type="warning" showIcon />
+        )
         break;
       default:
         if (flagCountries.includes(countryOfCitizenship)) {
