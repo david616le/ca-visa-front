@@ -51,6 +51,23 @@ class MyForm extends Component {
         {getFieldValue("isRepresentative") === "0" && <VisaRadio label={tr(resources.step_welcome.isApplyingOnBehalfOfMinorChild)} initialValue={_.get(data, "isApplyingOnBehalfOfMinorChild")} field="isApplyingOnBehalfOfMinorChild" getFieldDecorator={getFieldDecorator} lang={lang} />}
 
         <div className="visa-global-form-bottom-btn-group">
+          {this.props.adminToken && (
+            <div style={{ position: 'absolute', right: '50px', top: '20px' }}>
+              <Button type="primary" style={{ marginRight: '10px' }} onClick={e => this.props.handleFirst(e, this.props.form, this.handleDates)}>
+                {tr(resources.first)}
+              </Button>
+              {showPrev && (
+                <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
+                  {tr(resources.prev)}
+                </Button>
+              )}
+              {showNext && (
+                <Button type="primary" onClick={e => this.props.handleNext(e, this.props.form, this.handleDates)}>
+                  {tr(resources.next)}
+                </Button>
+              )}
+            </div>
+          )}
           {showPrev && (
             <Button style={{ marginRight: 8 }} onClick={e => this.props.handlePrev(e, this.props.form, this.handleDates)}>
               {tr(resources.prev)}

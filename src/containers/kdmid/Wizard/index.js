@@ -95,6 +95,27 @@ class DS160_Wizard extends Component {
     window.scrollTo(0, 0);
   };
 
+  onFirst = (data, field) => {
+    if (field != '') {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, objectAssignDeep(this.props.ds160, { [field]: data }))
+    } else {
+      this.props.updateValues(DS160.DS160_UPDATE_VALUES, data)
+    }    
+    this.props.onFirstStep(DS160.DS160_FIRST_STEP)
+
+    const { agency } = this.props
+    if (agency) {
+      this.props.history.push({
+        pathname: '/visa/application-form',
+        search: `?agency=${agency}`,
+      })
+    } else {
+      this.props.history.push('/visa/application-form')
+    }
+
+    window.scrollTo(0, 0)
+  }
+
   onSaveAndContinue = (data, field) => {
     const { agency } = this.props;
     const payload = {
@@ -222,12 +243,24 @@ class DS160_Wizard extends Component {
     });
   };
 
+  handleFirst = (e, form, handleDates, field) => {
+    e.preventDefault()
+    const values = form.getFieldsValue()
+    if (handleDates) {
+      this.onFirst(handleDates(values), field)
+    } else {
+      this.onFirst(values, field)
+    }
+  }
+
   onChangeCitizenCode = () => {
     this.props.initVisitArea(DS160.DS160_INIT_VISIT_AREA);
   };
 
   render() {
     const { step_index, ds160, loading, token, agency } = this.props;
+
+    const adminToken = localStorage.getItem('immigration4us_token')
 
     if (loading) {
       return (
@@ -279,6 +312,7 @@ class DS160_Wizard extends Component {
         this.handleNext(e, form, handleDates, field),
       handleSave: (e, form, handleDates) =>
         this.handleSave(e, form, handleDates, field),
+      handleFirst: (e, form, handleDates) => this.handleFirst(e, form, handleDates, field),
       agency: agency,
       lang: _.get(ds160, "welcome.language") || "en",
       data: _.get(ds160, field),
@@ -289,6 +323,7 @@ class DS160_Wizard extends Component {
         ds160,
         "welcome.isApplyingOnBehalfOfMinorChild"
       ),
+      adminToken,
     };
 
     switch (field) {
@@ -372,6 +407,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onPrevStep: (type) => {
       dispatch({ type });
+    },
+    onFirstStep: type => {
+      dispatch({ type })
     },
     updateValues: (type, values) => {
       dispatch({ type, values });

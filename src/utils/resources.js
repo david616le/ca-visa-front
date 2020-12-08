@@ -401,6 +401,13 @@ const resources = {
     es: `Neue hinzufügen`,
     de: `Aggiungi un altro`
   },
+  first: {
+    en: "First",
+    fr: "première",
+    es: "primera",
+    de: "ersten",
+    it: "prima"
+  },
   prev: {
     en: "Prev",
     fr: "Prec",
