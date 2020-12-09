@@ -260,7 +260,7 @@ class DS160_Wizard extends Component {
   render() {
     const { step_index, ds160, loading, token, agency } = this.props;
 
-    const adminToken = localStorage.getItem('immigration4us_token')
+    const adminToken = localStorage.getItem('canada_token')
 
     if (loading) {
       return (
