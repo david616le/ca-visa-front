@@ -18,9 +18,9 @@ class MyForm extends Component {
   };
 
   handleDates = data => {
-    if (data.dob) data.dob = data.dob.format("DD.MM.YYYY");
-    if (data.issueDate) data.issueDate = data.issueDate.format("DD.MM.YYYY");
-    if (data.expiryDate) data.expiryDate = data.expiryDate.format("DD.MM.YYYY");
+    if (data.dob && typeof(data.dob) === 'object') data.dob = data.dob.format("DD.MM.YYYY");
+    if (data.issueDate && typeof(data.issueDate) === 'object') data.issueDate = data.issueDate.format("DD.MM.YYYY");
+    if (data.expiryDate && typeof(data.expiryDate) === 'object') data.expiryDate = data.expiryDate.format("DD.MM.YYYY");
     return data;
   };
 

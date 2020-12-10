@@ -15,7 +15,7 @@ class MyForm extends Component {
   };
 
   handleDates = data => {
-    if (data.travelDate) data.travelDate = data.travelDate.format("DD.MM.YYYY");
+    if (data.travelDate && typeof(data.travelDate) === 'object') data.travelDate = data.travelDate.format("DD.MM.YYYY");
     return data;
   };
 

@@ -136,8 +136,8 @@ class MyForm extends Component {
     showNext: true
   };
 
-  handleDates = data => {
-    if (data.usaResidentCardExpiryDate) data.usaResidentCardExpiryDate = data.usaResidentCardExpiryDate.format("DD.MM.YYYY");
+  handleDates = data => {    
+    if (data.usaResidentCardExpiryDate && typeof(data.usaResidentCardExpiryDate) === 'object') data.usaResidentCardExpiryDate = data.usaResidentCardExpiryDate.format("DD.MM.YYYY");
     return data;
   };
 
